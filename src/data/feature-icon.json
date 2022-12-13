@@ -1,0 +1,20 @@
+[
+  {
+    "id": 1,
+    "image": "/assets/img/icon-img/support-1.png",
+    "title": "SHIP CODE TOÀN QUỐC",
+    "subtitle": "Nhận hàng & thanh toán tiền tại nhà."
+  },
+  {
+    "id": 2,
+    "image": "/assets/img/icon-img/support-2.png",
+    "title": "ĐỘI NGŨ TƯ VẤN CHUYÊN SÂU",
+    "subtitle": "Tư vấn 1 cách bài bản, khoa học nhất."
+  },
+  {
+    "id": 3,
+    "image": "/assets/img/icon-img/support-3.png",
+    "title": "ĐỔI TRẢ THEO QUY ĐỊNH",
+    "subtitle": " Cho phép bạn đổi trả hàng trong 30 ngày."
+  }
+]
