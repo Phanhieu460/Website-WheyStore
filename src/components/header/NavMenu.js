@@ -14,12 +14,12 @@ const NavMenu = ({ strings, menuWhiteClass, sidebarMenu }) => {
       <nav>
         <ul>
           <li>
-            <Link to={process.env.PUBLIC_URL + "/"}>Home</Link>
+            <Link to={process.env.PUBLIC_URL + "/"}>Trang chủ</Link>
           </li>
           <li>
             <Link to={process.env.PUBLIC_URL + "/shop-grid-standard"}>
               {" "}
-              Shop
+              Sản phẩm
             </Link>
           </li>
           <li>
@@ -35,32 +35,32 @@ const NavMenu = ({ strings, menuWhiteClass, sidebarMenu }) => {
             </Link>
             <ul className="submenu">
               <li>
-                <Link to={process.env.PUBLIC_URL + "/cart"}>Cart</Link>
+                <Link to={process.env.PUBLIC_URL + "/cart"}>Giỏ hàng</Link>
               </li>
               <li>
-                <Link to={process.env.PUBLIC_URL + "/checkout"}>Checkout</Link>
+                <Link to={process.env.PUBLIC_URL + "/checkout"}>
+                  Thanh toán
+                </Link>
               </li>
               <li>
                 <Link to={process.env.PUBLIC_URL + "/wishlist"}>Wishlist</Link>
               </li>
-              <li>
-                <Link to={process.env.PUBLIC_URL + "/compare"}>Compare</Link>
-              </li>
+
               <li>
                 <Link to={process.env.PUBLIC_URL + "/my-account"}>
-                  My Account
+                  Tài Khoản
                 </Link>
               </li>
               <li>
                 <Link to={process.env.PUBLIC_URL + "/login-register"}>
-                  Login
+                  Đăng nhập
                 </Link>
               </li>
               <li>
-                <Link to={process.env.PUBLIC_URL + "/about"}>About Us</Link>
+                <Link to={process.env.PUBLIC_URL + "/about"}>Về chúng tôi</Link>
               </li>
               <li>
-                <Link to={process.env.PUBLIC_URL + "/contact"}>Contact Us</Link>
+                <Link to={process.env.PUBLIC_URL + "/contact"}>Liên hệ</Link>
               </li>
               <li>
                 <Link to={process.env.PUBLIC_URL + "/not-found"}>404 Page</Link>
@@ -102,7 +102,7 @@ const NavMenu = ({ strings, menuWhiteClass, sidebarMenu }) => {
             </ul> */}
           </li>
           <li>
-            <Link to={process.env.PUBLIC_URL + "/contact"}>Contact Us</Link>
+            <Link to={process.env.PUBLIC_URL + "/contact"}>Liên hệ</Link>
           </li>
         </ul>
       </nav>

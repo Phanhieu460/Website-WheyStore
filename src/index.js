@@ -6,10 +6,24 @@ import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter } from "react-router-dom";
 import { Provider } from "react-redux";
 import "./assets/scss/style.scss";
-import store from "./app/store";
+import products from "./data/products.json";
+import { createStore, applyMiddleware } from "redux";
+import thunk from "redux-thunk";
+import { save, load } from "redux-localstorage-simple";
+import { fetchProducts } from "./redux/actions/productActions";
+import rootReducer from "./redux/reducers/rootReducer";
+import { composeWithDevTools } from "redux-devtools-extension";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
+const store = createStore(
+  rootReducer,
+  load(),
+  composeWithDevTools(applyMiddleware(thunk, save()))
+);
+
+// fetch products from json file
+store.dispatch(fetchProducts(products));
 root.render(
   <BrowserRouter>
     <Provider store={store}>

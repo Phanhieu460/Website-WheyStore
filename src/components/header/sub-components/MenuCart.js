@@ -48,7 +48,7 @@ const MenuCart = ({ cartData, currency, deleteFromCart }) => {
                         {single.name}{" "}
                       </Link>
                     </h4>
-                    <h6>Qty: {single.quantity}</h6>
+                    <h6>Số lượng: {single.quantity}</h6>
                     <span>
                       {discountedPrice !== null
                         ? currency.currencySymbol + finalDiscountedPrice
@@ -75,7 +75,7 @@ const MenuCart = ({ cartData, currency, deleteFromCart }) => {
           </ul>
           <div className="shopping-cart-total">
             <h4>
-              Total :{" "}
+              Tổng :{" "}
               <span className="shop-total">
                 {currency.currencySymbol + cartTotalPrice.toFixed(2)}
               </span>
@@ -83,18 +83,18 @@ const MenuCart = ({ cartData, currency, deleteFromCart }) => {
           </div>
           <div className="shopping-cart-btn btn-hover text-center">
             <Link className="default-btn" to={process.env.PUBLIC_URL + "/cart"}>
-              view cart
+              Giỏ hàng
             </Link>
             <Link
               className="default-btn"
               to={process.env.PUBLIC_URL + "/checkout"}
             >
-              checkout
+              Thanh toán
             </Link>
           </div>
         </Fragment>
       ) : (
-        <p className="text-center">No items added to cart</p>
+        <p className="text-center">Chưa có sản phẩm trong giỏ hàng!</p>
       )}
     </div>
   );

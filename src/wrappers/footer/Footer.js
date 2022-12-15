@@ -64,27 +64,22 @@ const Footer = ({
           >
             <div className="footer-widget mb-30 ml-30">
               <div className="footer-title">
-                <h3>ABOUT US</h3>
+                <h3>VỀ CHÚNG TÔI</h3>
               </div>
               <div className="footer-list">
                 <ul>
                   <li>
-                    <Link to={process.env.PUBLIC_URL + "/about"}>About us</Link>
-                  </li>
-                  <li>
                     <Link to={process.env.PUBLIC_URL + "#/"}>
-                      Store location
+                      Địa Chỉ Cửa Hàng
                     </Link>
                   </li>
                   <li>
                     <Link to={process.env.PUBLIC_URL + "/contact"}>
-                      Contact
+                      Liên Hệ
                     </Link>
                   </li>
                   <li>
-                    <Link to={process.env.PUBLIC_URL + "#/"}>
-                      Orders tracking
-                    </Link>
+                    <Link to={process.env.PUBLIC_URL + "#/"}>Đặt Hàng</Link>
                   </li>
                 </ul>
               </div>
