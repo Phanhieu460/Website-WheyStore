@@ -6,7 +6,6 @@ import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter } from "react-router-dom";
 import { Provider } from "react-redux";
 import "./assets/scss/style.scss";
-import products from "./data/products.json";
 import { createStore, applyMiddleware } from "redux";
 import thunk from "redux-thunk";
 import { save, load } from "redux-localstorage-simple";
@@ -22,8 +21,8 @@ const store = createStore(
   composeWithDevTools(applyMiddleware(thunk, save()))
 );
 
-// fetch products from json file
-store.dispatch(fetchProducts(products));
+// // fetch products from json file
+store.dispatch(fetchProducts());
 root.render(
   <BrowserRouter>
     <Provider store={store}>

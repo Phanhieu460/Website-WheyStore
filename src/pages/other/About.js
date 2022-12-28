@@ -23,9 +23,9 @@ const About = ({ location }) => {
           content="About page of flone react minimalist eCommerce template."
         />
       </MetaTags>
-      <BreadcrumbsItem to={process.env.PUBLIC_URL + "/"}>Home</BreadcrumbsItem>
+      <BreadcrumbsItem to={process.env.PUBLIC_URL + "/"}>TRANG CHỦ</BreadcrumbsItem>
       <BreadcrumbsItem to={process.env.PUBLIC_URL + pathname}>
-        About us
+        VỀ CHÚNG TÔI
       </BreadcrumbsItem>
       <Layout headerTop="visible">
         {/* breadcrumb */}

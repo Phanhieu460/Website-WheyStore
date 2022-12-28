@@ -11,20 +11,22 @@ import Layout from "../../layout/Layout";
 
 const Product = ({ location, product }) => {
   const { pathname } = location;
-
+  console.log(product, "product");
   return (
     <Fragment>
       <MetaTags>
-        <title>Flone | Product Page</title>
+        <title>Flone | Sản Phẩm</title>
         <meta
           name="description"
           content="Product page of flone react minimalist eCommerce template."
         />
       </MetaTags>
 
-      <BreadcrumbsItem to={process.env.PUBLIC_URL + "/"}>Home</BreadcrumbsItem>
+      <BreadcrumbsItem to={process.env.PUBLIC_URL + "/"}>
+        TRANG CHỦ
+      </BreadcrumbsItem>
       <BreadcrumbsItem to={process.env.PUBLIC_URL + pathname}>
-        Shop Product
+        SẢN PHẨM
       </BreadcrumbsItem>
 
       <Layout headerTop="visible">
@@ -41,13 +43,13 @@ const Product = ({ location, product }) => {
         {/* product description tab */}
         <ProductDescriptionTab
           spaceBottomClass="pb-90"
-          productFullDesc={product.fullDescription}
+          productFullDesc={product?.fullDescription}
         />
 
         {/* related product slider */}
         <RelatedProductSlider
           spaceBottomClass="pb-95"
-          category={product.category[0]}
+          category={product?.category[0]}
         />
       </Layout>
     </Fragment>
@@ -63,7 +65,7 @@ const mapStateToProps = (state, ownProps) => {
   const itemId = ownProps.match.params.id;
   return {
     product: state.productData.products.filter(
-      (single) => single.id === itemId
+      (single) => single._id === itemId
     )[0],
   };
 };

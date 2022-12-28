@@ -1,13 +1,14 @@
 // get products
 export const getProducts = (products, category, type, limit) => {
+  console.log(products, "test");
   const finalProducts = category
-    ? products.filter(
+    ? products?.filter(
         (product) => product.category.filter((single) => single === category)[0]
       )
     : products;
 
   if (type && type === "new") {
-    const newProducts = finalProducts.filter((single) => single.new);
+    const newProducts = finalProducts?.filter((single) => single.new);
     return newProducts.slice(0, limit ? limit : newProducts.length);
   }
   if (type && type === "bestSeller") {
@@ -18,7 +19,7 @@ export const getProducts = (products, category, type, limit) => {
       .slice(0, limit ? limit : finalProducts.length);
   }
   if (type && type === "saleItems") {
-    const saleItems = finalProducts.filter(
+    const saleItems = finalProducts?.filter(
       (single) => single.discount && single.discount > 0
     );
     return saleItems.slice(0, limit ? limit : saleItems.length);
@@ -35,7 +36,7 @@ export const getDiscountPrice = (price, discount) => {
 export const getProductCartQuantity = (cartItems, product, color, size) => {
   let productInCart = cartItems.filter(
     (single) =>
-      single.id === product.id &&
+      single.id === product._id &&
       (single.selectedProductColor
         ? single.selectedProductColor === color
         : true) &&
@@ -45,12 +46,13 @@ export const getProductCartQuantity = (cartItems, product, color, size) => {
     if (product.variation) {
       return cartItems.filter(
         (single) =>
-          single.id === product.id &&
+          single.id === product._id &&
           single.selectedProductColor === color &&
           single.selectedProductSize === size
       )[0].quantity;
     } else {
-      return cartItems.filter((single) => product.id === single.id)[0].quantity;
+      return cartItems.filter((single) => product._id === single.id)[0]
+        .quantity;
     }
   } else {
     return 0;
@@ -71,11 +73,11 @@ export const getSortedProducts = (products, sortType, sortValue) => {
         (product) => product.tag.filter((single) => single === sortValue)[0]
       );
     }
-    if (sortType === "color") {
+    if (sortType === "smell") {
       return products.filter(
         (product) =>
           product.variation &&
-          product.variation.filter((single) => single.color === sortValue)[0]
+          product.variation.filter((single) => single.smell === sortValue)[0]
       );
     }
     if (sortType === "size") {
@@ -150,18 +152,18 @@ export const getIndividualTags = (products) => {
 
 // get individual colors
 export const getIndividualColors = (products) => {
-  let productColors = [];
+  let productSmells = [];
   products &&
     products.map((product) => {
       return (
         product.variation &&
         product.variation.map((single) => {
-          return productColors.push(single.color);
+          return productSmells.push(single.smell);
         })
       );
     });
-  const individualProductColors = getIndividualItemArray(productColors);
-  return individualProductColors;
+  const individualProductSmells = getIndividualItemArray(productSmells);
+  return individualProductSmells;
 };
 
 // get individual sizes

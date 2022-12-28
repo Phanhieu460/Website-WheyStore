@@ -332,7 +332,7 @@
       .pro-cart {
         font-size: 14px;
 
-        width: calc(100% - 48px - 48px);
+        width: calc(100% - 48px);
 
         transition-delay: 0.1s;
       }
@@ -516,7 +516,7 @@
     margin: 15px 0 26px;
     span {
       font-size: 24px;
-
+      font-weight: 500;
       color: #fe5252;
       &.old {
         font-size: 18px;
@@ -625,62 +625,53 @@
       .pro-details-color-content {
         ul {
           li {
-            position: relative;
 
-            display: block;
-            float: left;
+            display: inline-block;
+            margin: 0 5px 0 0;
 
-            width: 14px;
-            height: 14px;
-            margin-right: 15px;
+            list-style: outside none none;
+            a {
+              font-size: 12px;
+              line-height: 1;
 
-            cursor: pointer;
-            transition: all 0.4s ease 0s;
+              display: inline-block;
 
-            border-radius: 50px;
-            &:last-child {
-              margin-right: 0;
+              padding: 6px 9px 7px;
+
+              text-transform: uppercase;
+
+              color: #000;
+              background-color: #f1f2f6;
+              &:hover {
+                color: #fff;
+                background-color: $theme-color;
+              }
             }
-            &.blue {
-              border: 1px solid #4798f3;
-              background-color: #4798f3;
-            }
-            &.maroon {
-              border: 1px solid #736751;
-              background-color: #736751;
-            }
-            &.gray {
-              border: 1px solid #c0c0c0;
-              background-color: #c0c0c0;
-            }
-            &.green {
-              border: 1px solid #139c57;
-              background-color: #139c57;
-            }
-            &.yellow {
-              border: 1px solid #e28b37;
-              background-color: #e28b37;
-            }
+
           }
         }
         &--single {
+          font-size: 12px;
+          line-height: 1;
+
           position: relative;
 
           display: inline-block;
 
-          width: 14px;
-          height: 14px;
-          margin-right: 15px;
+          margin: 0 5px 0 0;
 
-          cursor: pointer;
-          transition: all 0.4s ease 0s;
+          text-transform: uppercase;
 
-          border-radius: 50px;
-          &:last-child {
-            margin-right: 0;
+          color: #000;
+          background-color: #f1f2f6;
+          &:hover {
+            color: #fff;
+            background-color: $theme-color;
           }
           input {
             position: absolute;
+            top: 0;
+            left: 0;
 
             height: 100%;
 
@@ -689,85 +680,23 @@
             opacity: 0;
 
             &:checked {
-              & ~ .checkmark {
-                &:after {
-                  visibility: visible;
-
-                  opacity: 1;
-                }
+              & ~ .size-name {
+                color: $white;
+                background-color: $theme-color;
               }
             }
           }
-          &.blue {
-            border: 1px solid #4798f3;
-            background-color: #4798f3;
-          }
-          &.maroon {
-            border: 1px solid #736751;
-            background-color: #736751;
-          }
-          &.gray {
-            border: 1px solid #c0c0c0;
-            background-color: #c0c0c0;
-          }
-          &.green {
-            border: 1px solid #139c57;
-            background-color: #139c57;
-          }
-          &.yellow {
-            border: 1px solid #e28b37;
-            background-color: #e28b37;
-          }
-          &.white {
-            border: 1px solid #333;
-            background-color: #fff;
-          }
-          &.black {
-            border: 1px solid #333;
-            background-color: #333;
-          }
-          &.brown {
-            border: 1px solid brown;
-            background-color: brown;
-          }
-          .checkmark {
-            position: relative;
+          
+          .size-name {
+            font-size: 12px;
+            font-weight: 400;
 
-            display: inline-block;
-
-            width: 14px;
-            height: 14px;
-            margin: 0;
-            &:after {
-              position: absolute;
-              top: -7px;
-              left: -4px;
-
-              visibility: hidden;
-
-              width: 20px;
-              height: 20px;
-
-              content: "";
-              transition: 0.3s;
-
-              opacity: 0;
-              border: 2px solid #333;
-              border-radius: 50%;
-            }
+            width: 100%;
+            margin-bottom: 0;
+            padding: 8px;
           }
 
-          &:hover {
-            input {
-              & ~ .checkmark {
-                &:after {
-                  visibility: visible;
-
-                  opacity: 1;
-                }
-              }
-            }
-          }
+        
         }
       }
     }
@@ -818,7 +747,7 @@
           margin: 0 5px 0 0;
 
           text-transform: uppercase;
-
+          
           color: #000;
           background-color: #f1f2f6;
           &:hover {

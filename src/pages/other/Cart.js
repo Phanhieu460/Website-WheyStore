@@ -33,16 +33,18 @@ const Cart = ({
   return (
     <Fragment>
       <MetaTags>
-        <title>Flone | Cart</title>
+        <title>Flone | Giỏ Hàng</title>
         <meta
           name="description"
           content="Cart page of flone react minimalist eCommerce template."
         />
       </MetaTags>
 
-      <BreadcrumbsItem to={process.env.PUBLIC_URL + "/"}>Home</BreadcrumbsItem>
+      <BreadcrumbsItem to={process.env.PUBLIC_URL + "/"}>
+        TRANG CHỦ
+      </BreadcrumbsItem>
       <BreadcrumbsItem to={process.env.PUBLIC_URL + pathname}>
-        Cart
+        GIỎ HÀNG
       </BreadcrumbsItem>
 
       <Layout headerTop="visible">
@@ -52,29 +54,29 @@ const Cart = ({
           <div className="container">
             {cartItems && cartItems.length >= 1 ? (
               <Fragment>
-                <h3 className="cart-page-title">Your cart items</h3>
+                <h3 className="cart-page-title">Giỏ Hàng Của Bạn</h3>
                 <div className="row">
                   <div className="col-12">
                     <div className="table-content table-responsive cart-table-content">
                       <table>
                         <thead>
                           <tr>
-                            <th>Image</th>
-                            <th>Product Name</th>
-                            <th>Unit Price</th>
-                            <th>Qty</th>
-                            <th>Subtotal</th>
-                            <th>action</th>
+                            <th>Hình Ảnh</th>
+                            <th>Tên Sản Phẩm</th>
+                            <th>Giá Tiền</th>
+                            <th>Số Lượng</th>
+                            <th>Thành Tiền</th>
+                            <th>Hành Động</th>
                           </tr>
                         </thead>
                         <tbody>
                           {cartItems.map((cartItem, key) => {
                             const discountedPrice = getDiscountPrice(
-                              cartItem.price,
+                              cartItem.entryPrice,
                               cartItem.discount
                             );
                             const finalProductPrice = (
-                              cartItem.price * currency.currencyRate
+                              cartItem.entryPrice * currency.currencyRate
                             ).toFixed(2);
                             const finalDiscountedPrice = (
                               discountedPrice * currency.currencyRate
@@ -92,7 +94,7 @@ const Cart = ({
                                     to={
                                       process.env.PUBLIC_URL +
                                       "/product/" +
-                                      cartItem.id
+                                      cartItem._id
                                     }
                                   >
                                     <img
@@ -111,7 +113,7 @@ const Cart = ({
                                     to={
                                       process.env.PUBLIC_URL +
                                       "/product/" +
-                                      cartItem.id
+                                      cartItem._id
                                     }
                                   >
                                     {cartItem.name}
@@ -120,7 +122,7 @@ const Cart = ({
                                   cartItem.selectedProductSize ? (
                                     <div className="cart-item-variation">
                                       <span>
-                                        Color: {cartItem.selectedProductColor}
+                                        Smell: {cartItem.selectedProductColor}
                                       </span>
                                       <span>
                                         Size: {cartItem.selectedProductSize}
@@ -136,17 +138,26 @@ const Cart = ({
                                     <Fragment>
                                       <span className="amount old">
                                         {currency.currencySymbol +
-                                          finalProductPrice}
+                                          Intl.NumberFormat("vi-VN").format(
+                                            finalProductPrice
+                                          ) +
+                                          ".000"}
                                       </span>
                                       <span className="amount">
                                         {currency.currencySymbol +
-                                          finalDiscountedPrice}
+                                          Intl.NumberFormat("vi-VN").format(
+                                            finalDiscountedPrice
+                                          ) +
+                                          ".000"}
                                       </span>
                                     </Fragment>
                                   ) : (
                                     <span className="amount">
                                       {currency.currencySymbol +
-                                        finalProductPrice}
+                                        Intl.NumberFormat("vi-VN").format(
+                                          finalProductPrice
+                                        ) +
+                                        ".000"}
                                     </span>
                                   )}
                                 </td>
@@ -194,13 +205,20 @@ const Cart = ({
                                 <td className="product-subtotal">
                                   {discountedPrice !== null
                                     ? currency.currencySymbol +
-                                      (
-                                        finalDiscountedPrice * cartItem.quantity
-                                      ).toFixed(2)
+                                      Intl.NumberFormat("vi-VN").format(
+                                        (
+                                          finalDiscountedPrice *
+                                          cartItem.quantity
+                                        ).toFixed(2)
+                                      ) +
+                                      ".000"
                                     : currency.currencySymbol +
-                                      (
-                                        finalProductPrice * cartItem.quantity
-                                      ).toFixed(2)}
+                                      Intl.NumberFormat("vi-VN").format(
+                                        (
+                                          finalProductPrice * cartItem.quantity
+                                        ).toFixed(2)
+                                      ) +
+                                      ".000"}
                                 </td>
 
                                 <td className="product-remove">
@@ -224,15 +242,13 @@ const Cart = ({
                   <div className="col-lg-12">
                     <div className="cart-shiping-update-wrapper">
                       <div className="cart-shiping-update">
-                        <Link
-                          to={process.env.PUBLIC_URL + "/shop-grid-standard"}
-                        >
-                          Continue Shopping
+                        <Link to={process.env.PUBLIC_URL + "/shop"}>
+                          Tiếp tục mua hàng
                         </Link>
                       </div>
                       <div className="cart-clear">
                         <button onClick={() => deleteAllFromCart(addToast)}>
-                          Clear Shopping Cart
+                          Xóa giỏ hàng
                         </button>
                       </div>
                     </div>
@@ -240,7 +256,7 @@ const Cart = ({
                 </div>
 
                 <div className="row">
-                  <div className="col-lg-4 col-md-6">
+                  {/* <div className="col-lg-4 col-md-6">
                     <div className="cart-tax">
                       <div className="title-wrap">
                         <h4 className="cart-bottom-title section-bg-gray">
@@ -282,9 +298,9 @@ const Cart = ({
                         </div>
                       </div>
                     </div>
-                  </div>
+                  </div> */}
 
-                  <div className="col-lg-4 col-md-6">
+                  {/* <div className="col-lg-4 col-md-6">
                     <div className="discount-code-wrapper">
                       <div className="title-wrap">
                         <h4 className="cart-bottom-title section-bg-gray">
@@ -301,30 +317,38 @@ const Cart = ({
                         </form>
                       </div>
                     </div>
-                  </div>
+                  </div> */}
 
                   <div className="col-lg-4 col-md-12">
                     <div className="grand-totall">
                       <div className="title-wrap">
                         <h4 className="cart-bottom-title section-bg-gary-cart">
-                          Cart Total
+                          Tổng sô giỏ hàng
                         </h4>
                       </div>
                       <h5>
-                        Total products{" "}
+                        Tổng sản phẩm{" "}
                         <span>
-                          {currency.currencySymbol + cartTotalPrice.toFixed(2)}
+                          {currency.currencySymbol +
+                            Intl.NumberFormat("vi-VN").format(
+                              cartTotalPrice.toFixed(2)
+                            ) +
+                            ".000"}
                         </span>
                       </h5>
 
                       <h4 className="grand-totall-title">
-                        Grand Total{" "}
+                        Tổng cộng{" "}
                         <span>
-                          {currency.currencySymbol + cartTotalPrice.toFixed(2)}
+                          {currency.currencySymbol +
+                            Intl.NumberFormat("vi-VN").format(
+                              cartTotalPrice.toFixed(2)
+                            ) +
+                            ".000"}
                         </span>
                       </h4>
                       <Link to={process.env.PUBLIC_URL + "/checkout"}>
-                        Proceed to Checkout
+                        Tiến Hành Kiểm Tra
                       </Link>
                     </div>
                   </div>
@@ -338,9 +362,9 @@ const Cart = ({
                       <i className="pe-7s-cart"></i>
                     </div>
                     <div className="item-empty-area__text">
-                      No items found in cart <br />{" "}
-                      <Link to={process.env.PUBLIC_URL + "/shop-grid-standard"}>
-                        Shop Now
+                      Không tìm thấy mặt hàng nào trong giỏ hàng <br />{" "}
+                      <Link to={process.env.PUBLIC_URL + "/shop"}>
+                        Mua Ngay
                       </Link>
                     </div>
                   </div>

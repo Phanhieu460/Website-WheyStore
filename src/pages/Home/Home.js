@@ -19,11 +19,11 @@ const Home = () => {
         {/* Feature Icon */}
         <FeatureIcon spaceBottomClass="pb-50" spaceTopClass="pt-50" />
         {/* Tab Product */}
-        <TabProduct spaceBottomClass="pb-70" category="medical" />
+        <TabProduct spaceBottomClass="pb-70" category="wheyprotein" />
         {/* Banner */}
         <Banner spaceBottomClass="pb-70" />
         {/* product slider */}
-        <ProductSlider category="medical" />
+        <ProductSlider category="wheyprotein" />
         {/* blog */}
         <BlogFeatured spaceBottomClass="pb-55" spaceTopClass="pt-95" />
       </Layout>

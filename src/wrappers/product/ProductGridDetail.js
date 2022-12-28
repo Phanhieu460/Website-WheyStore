@@ -32,19 +32,19 @@ const ProductGridDetail = ({
             addToWishlist={addToWishlist}
             addToCompare={addToCompare}
             cartItem={
-              cartItems.filter((cartItem) => cartItem.id === product.id)[0]
+              cartItems.filter((cartItem) => cartItem.id === product._id)[0]
             }
             wishlistItem={
               wishlistItems.filter(
-                (wishlistItem) => wishlistItem.id === product.id
+                (wishlistItem) => wishlistItem.id === product._id
               )[0]
             }
             compareItem={
               compareItems.filter(
-                (compareItem) => compareItem.id === product.id
+                (compareItem) => compareItem.id === product._id
               )[0]
             }
-            key={product.id}
+            key={product._id}
           />
         );
       })}

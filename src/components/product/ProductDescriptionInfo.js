@@ -11,25 +11,22 @@ import Rating from "./sub-components/ProductRating";
 const ProductDescriptionInfo = ({
   product,
   discountedPrice,
-  currency,
   finalDiscountedPrice,
   finalProductPrice,
   cartItems,
-  wishlistItem,
-  compareItem,
   addToast,
   addToCart,
-  addToWishlist,
-  addToCompare
 }) => {
   const [selectedProductColor, setSelectedProductColor] = useState(
-    product.variation ? product.variation[0].color : ""
+    product.variation.length > 0 ? product?.variation[0]?.smell : ""
   );
   const [selectedProductSize, setSelectedProductSize] = useState(
-    product.variation ? product.variation[0].size[0].name : ""
+    product.variation.length > 0 ? product?.variation[0]?.size[0]?.name : ""
   );
   const [productStock, setProductStock] = useState(
-    product.variation ? product.variation[0].size[0].stock : product.stock
+    product.variation.length > 0
+      ? product?.variation[0]?.size[0]?.stock
+      : product.stock
   );
   const [quantityCount, setQuantityCount] = useState(1);
 
@@ -39,6 +36,7 @@ const ProductDescriptionInfo = ({
     selectedProductColor,
     selectedProductSize
   );
+  console.log(productStock, "zzzz");
 
   return (
     <div className="product-details-content ml-70">
@@ -46,87 +44,96 @@ const ProductDescriptionInfo = ({
       <div className="product-details-price">
         {discountedPrice !== null ? (
           <Fragment>
-            <span>{currency.currencySymbol + finalDiscountedPrice}</span>{" "}
+            <span>
+              {"₫" +
+                " " +
+                Intl.NumberFormat("vi-VN").format(finalDiscountedPrice) +
+                ".000"}
+            </span>{" "}
             <span className="old">
-              {currency.currencySymbol + finalProductPrice}
+              {"₫" +
+                " " +
+                Intl.NumberFormat("vi-VN").format(finalProductPrice) +
+                ".000"}
             </span>
           </Fragment>
         ) : (
-          <span>{currency.currencySymbol + finalProductPrice} </span>
+          <span>
+            {"₫" +
+              " " +
+              Intl.NumberFormat("vi-VN").format(finalProductPrice) +
+              ".000"}{" "}
+          </span>
         )}
       </div>
-      {product.rating && product.rating > 0 ? (
-        <div className="pro-details-rating-wrap">
-          <div className="pro-details-rating">
-            <Rating ratingValue={product.rating} />
-          </div>
-        </div>
-      ) : (
-        ""
-      )}
-      <div className="pro-details-list">
-        <p>{product.shortDescription}</p>
-      </div>
 
-      {product.variation ? (
+      <div
+        className="pro-details-list"
+        dangerouslySetInnerHTML={{ __html: product.shortDescription }}
+      ></div>
+
+      {product.variation.length > 0 ? (
         <div className="pro-details-size-color">
           <div className="pro-details-color-wrap">
-            <span>Color</span>
             <div className="pro-details-color-content">
               {product.variation.map((single, key) => {
                 return (
-                  <label
-                    className={`pro-details-color-content--single ${single.color}`}
-                    key={key}
-                  >
-                    <input
-                      type="radio"
-                      value={single.color}
-                      name="product-color"
-                      checked={
-                        single.color === selectedProductColor ? "checked" : ""
-                      }
-                      onChange={() => {
-                        setSelectedProductColor(single.color);
-                        setSelectedProductSize(single.size[0].name);
-                        setProductStock(single.size[0].stock);
-                        setQuantityCount(1);
-                      }}
-                    />
-                    <span className="checkmark"></span>
-                  </label>
+                  <>
+                    <span>Flavor</span>
+                    <label
+                      className={`pro-details-color-content--single`}
+                      key={key}
+                    >
+                      <input
+                        type="text"
+                        value={single.smell}
+                        name="product-color"
+                        onChange={() => {
+                          setSelectedProductColor(single.smell);
+                          setSelectedProductSize(single.size[0].name);
+                          setProductStock(single.size[0].stock);
+                          setQuantityCount(1);
+                        }}
+                      />
+                      <span className="size-name">{single.smell}</span>
+                    </label>
+                  </>
                 );
               })}
             </div>
           </div>
           <div className="pro-details-size">
-            <span>Size</span>
             <div className="pro-details-size-content">
-              {product.variation &&
-                product.variation.map(single => {
-                  return single.color === selectedProductColor
+              {product.variation.length > 0 &&
+                product.variation.map((single) => {
+                  return single.smell === selectedProductColor
                     ? single.size.map((singleSize, key) => {
                         return (
-                          <label
-                            className={`pro-details-size-content--single`}
-                            key={key}
-                          >
-                            <input
-                              type="radio"
-                              value={singleSize.name}
-                              checked={
-                                singleSize.name === selectedProductSize
-                                  ? "checked"
-                                  : ""
-                              }
-                              onChange={() => {
-                                setSelectedProductSize(singleSize.name);
-                                setProductStock(singleSize.stock);
-                                setQuantityCount(1);
-                              }}
-                            />
-                            <span className="size-name">{singleSize.name}</span>
-                          </label>
+                          <>
+                            <span>Tripping</span>
+                            <label
+                              className={`pro-details-size-content--single`}
+                              key={key}
+                            >
+                              <input
+                                type="text"
+                                value={singleSize.name}
+                                checked={
+                                  singleSize.name === selectedProductSize
+                                    ? "checked"
+                                    : ""
+                                }
+                                onChange={() => {
+                                  setSelectedProductSize(singleSize.name);
+                                  setProductStock(singleSize.stock);
+                                  setQuantityCount(1);
+                                }}
+                              />
+                              <span className="size-name">
+                                {singleSize.name}
+                              </span>
+                            </label>
+                          </>
                         );
                       })
                     : "";
@@ -145,7 +152,7 @@ const ProductDescriptionInfo = ({
               rel="noopener noreferrer"
               target="_blank"
             >
-              Buy Now
+              Mua Ngay
             </a>
           </div>
         </div>
@@ -194,13 +201,13 @@ const ProductDescriptionInfo = ({
                 disabled={productCartQty >= productStock}
               >
                 {" "}
-                Add To Cart{" "}
+                Thêm Vào Giỏ Hàng{" "}
               </button>
             ) : (
-              <button disabled>Out of Stock</button>
+              <button disabled>Hết Hàng</button>
             )}
           </div>
-          <div className="pro-details-wishlist">
+          {/* <div className="pro-details-wishlist">
             <button
               className={wishlistItem !== undefined ? "active" : ""}
               disabled={wishlistItem !== undefined}
@@ -213,8 +220,8 @@ const ProductDescriptionInfo = ({
             >
               <i className="pe-7s-like" />
             </button>
-          </div>
-          <div className="pro-details-compare">
+          </div> */}
+          {/* <div className="pro-details-compare">
             <button
               className={compareItem !== undefined ? "active" : ""}
               disabled={compareItem !== undefined}
@@ -227,19 +234,17 @@ const ProductDescriptionInfo = ({
             >
               <i className="pe-7s-shuffle" />
             </button>
-          </div>
+          </div> */}
         </div>
       )}
       {product.category ? (
         <div className="pro-details-meta">
-          <span>Categories :</span>
+          <span>Loại Sản Phẩm :</span>
           <ul>
             {product.category.map((single, key) => {
               return (
                 <li key={key}>
-                  <Link to={process.env.PUBLIC_URL + "/shop-grid-standard"}>
-                    {single}
-                  </Link>
+                  <Link to={process.env.PUBLIC_URL + "/shop"}>{single}</Link>
                 </li>
               );
             })}
@@ -255,9 +260,7 @@ const ProductDescriptionInfo = ({
             {product.tag.map((single, key) => {
               return (
                 <li key={key}>
-                  <Link to={process.env.PUBLIC_URL + "/shop-grid-standard"}>
-                    {single}
-                  </Link>
+                  <Link to={process.env.PUBLIC_URL + "/shop"}>{single}</Link>
                 </li>
               );
             })}
@@ -312,10 +315,10 @@ ProductDescriptionInfo.propTypes = {
   finalDiscountedPrice: PropTypes.number,
   finalProductPrice: PropTypes.number,
   product: PropTypes.object,
-  wishlistItem: PropTypes.object
+  wishlistItem: PropTypes.object,
 };
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch) => {
   return {
     addToCart: (
       item,
@@ -339,7 +342,7 @@ const mapDispatchToProps = dispatch => {
     },
     addToCompare: (item, addToast) => {
       dispatch(addToCompare(item, addToast));
-    }
+    },
   };
 };
 

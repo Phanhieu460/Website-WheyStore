@@ -7,7 +7,9 @@ const compareReducer = (state = initState, action) => {
     product = action.payload;
 
   if (action.type === ADD_TO_COMPARE) {
-    const compareItem = compareItems.filter(item => item.id === product.id)[0];
+    const compareItem = compareItems.filter(
+      (item) => item.id === product._id
+    )[0];
     if (compareItem === undefined) {
       return [...compareItems, product];
     } else {
@@ -17,7 +19,7 @@ const compareReducer = (state = initState, action) => {
 
   if (action.type === DELETE_FROM_COMPARE) {
     const remainingItems = (compareItems, product) =>
-      compareItems.filter(compareItem => compareItem.id !== product.id);
+      compareItems.filter((compareItem) => compareItem.id !== product._id);
     return remainingItems(compareItems, product);
   }
 

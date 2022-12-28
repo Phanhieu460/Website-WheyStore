@@ -21,14 +21,19 @@ const ProductGridSingle = ({
 }) => {
   const [modalShow, setModalShow] = useState(false);
 
-  //   const { addToast } = useToasts();
+  const { addToast } = useToasts();
 
-  const discountedPrice = getDiscountPrice(product.price, product.discount);
-  const finalProductPrice = +(product.price * currency.currencyRate).toFixed(2);
+  const discountedPrice = getDiscountPrice(
+    product.entryPrice,
+    product.discount
+  );
+  const finalProductPrice = +(
+    product.entryPrice * currency.currencyRate
+  ).toFixed(2);
   const finalDiscountedPrice = +(
     discountedPrice * currency.currencyRate
   ).toFixed(2);
-
+  console.log(product, "product");
   return (
     <ToastProvider>
       <div
@@ -42,7 +47,7 @@ const ProductGridSingle = ({
           } ${colorClass ? colorClass : ""} `}
         >
           <div className="product-img">
-            <Link to={process.env.PUBLIC_URL + "/product/" + product.id}>
+            <Link to={process.env.PUBLIC_URL + "/product/" + product._id}>
               <img
                 className="default-img"
                 src={process.env.PUBLIC_URL + product.image[0]}
@@ -84,14 +89,14 @@ const ProductGridSingle = ({
                 </a>
               ) : product.variation && product.variation.length >= 1 ? (
                 <Link
-                  to={`${process.env.PUBLIC_URL}/product/${product.id}`}
+                  to={`${process.env.PUBLIC_URL}/product/${product._id}`}
                   title="Select options"
                 >
                   <i className="fa fa-cog"></i>
                 </Link>
               ) : product.stock && product.stock > 0 ? (
                 <button
-                  //   onClick={() => addToCart(product, addToast)}
+                  onClick={() => addToCart(product, addToast)}
                   className={
                     cartItem !== undefined && cartItem.quantity > 0
                       ? "active"
@@ -99,14 +104,16 @@ const ProductGridSingle = ({
                   }
                   disabled={cartItem !== undefined && cartItem.quantity > 0}
                   title={
-                    cartItem !== undefined ? "Added to cart" : "Add to cart"
+                    cartItem !== undefined
+                      ? "Added to cart"
+                      : "Thêm Vào Giỏ Hàng"
                   }
                 >
                   {" "}
                   <i className="fa fa-shopping-cart"></i>{" "}
                 </button>
               ) : (
-                <button disabled className="active" title="Out of stock">
+                <button disabled className="active" title="Hết Hàng">
                   <i className="fa fa-shopping-cart"></i>
                 </button>
               )}
@@ -123,7 +130,7 @@ const ProductGridSingle = ({
                     ? "Added to compare"
                     : "Add to compare"
                 }
-                // onClick={() => addToCompare(product, addToast)}
+                onClick={() => addToCompare(product, addToast)}
               >
                 <i className="fa fa-retweet"></i>
               </button>
@@ -136,7 +143,7 @@ const ProductGridSingle = ({
               }`}
             >
               <h3>
-                <Link to={process.env.PUBLIC_URL + "/product/" + product.id}>
+                <Link to={process.env.PUBLIC_URL + "/product/" + product._id}>
                   {product.name}
                 </Link>
               </h3>
@@ -164,7 +171,7 @@ const ProductGridSingle = ({
                     ? "Added to wishlist"
                     : "Add to wishlist"
                 }
-                // onClick={() => addToWishlist(product, addToast)}
+                onClick={() => addToWishlist(product, addToast)}
               >
                 <i className="fa fa-heart-o" />
               </button>
@@ -173,7 +180,7 @@ const ProductGridSingle = ({
         </div>
       </div>
       {/* product modal */}
-      <ProductModal
+      {/* <ProductModal
         show={modalShow}
         onHide={() => setModalShow(false)}
         product={product}
@@ -187,8 +194,8 @@ const ProductGridSingle = ({
         addtocart={addToCart}
         addtowishlist={addToWishlist}
         addtocompare={addToCompare}
-        // addtoast={addToast}
-      />
+        addtoast={addToast}
+      /> */}
     </ToastProvider>
   );
 };

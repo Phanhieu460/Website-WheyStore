@@ -17,12 +17,9 @@ const NavMenu = ({ strings, menuWhiteClass, sidebarMenu }) => {
             <Link to={process.env.PUBLIC_URL + "/"}>Trang chủ</Link>
           </li>
           <li>
-            <Link to={process.env.PUBLIC_URL + "/shop-grid-standard"}>
-              {" "}
-              Sản phẩm
-            </Link>
+            <Link to={process.env.PUBLIC_URL + "/shop"}> Sản phẩm</Link>
           </li>
-          <li>
+          {/* <li>
             <Link to={process.env.PUBLIC_URL + "/"}>
               Pages
               {sidebarMenu ? (
@@ -43,10 +40,6 @@ const NavMenu = ({ strings, menuWhiteClass, sidebarMenu }) => {
                 </Link>
               </li>
               <li>
-                <Link to={process.env.PUBLIC_URL + "/wishlist"}>Wishlist</Link>
-              </li>
-
-              <li>
                 <Link to={process.env.PUBLIC_URL + "/my-account"}>
                   Tài Khoản
                 </Link>
@@ -66,40 +59,9 @@ const NavMenu = ({ strings, menuWhiteClass, sidebarMenu }) => {
                 <Link to={process.env.PUBLIC_URL + "/not-found"}>404 Page</Link>
               </li>
             </ul>
-          </li>
+          </li> */}
           <li>
-            <Link to={process.env.PUBLIC_URL + "/blog-standard"}>
-              Blog
-              {sidebarMenu ? (
-                <span>
-                  <i className="fa fa-angle-right"></i>
-                </span>
-              ) : (
-                <i className="fa fa-angle-down" />
-              )}
-            </Link>
-            {/* <ul className="submenu">
-              <li>
-                <Link to={process.env.PUBLIC_URL + "/blog-standard"}>
-                  {strings["blog_standard"]}
-                </Link>
-              </li>
-              <li>
-                <Link to={process.env.PUBLIC_URL + "/blog-no-sidebar"}>
-                  {strings["blog_no_sidebar"]}
-                </Link>
-              </li>
-              <li>
-                <Link to={process.env.PUBLIC_URL + "/blog-right-sidebar"}>
-                  {strings["blog_right_sidebar"]}
-                </Link>
-              </li>
-              <li>
-                <Link to={process.env.PUBLIC_URL + "/blog-details-standard"}>
-                  {strings["blog_details_standard"]}
-                </Link>
-              </li>
-            </ul> */}
+            <Link to={process.env.PUBLIC_URL + "/blog"}>Blog</Link>
           </li>
           <li>
             <Link to={process.env.PUBLIC_URL + "/contact"}>Liên hệ</Link>

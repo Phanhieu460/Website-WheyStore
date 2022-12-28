@@ -48,7 +48,7 @@ const Footer = ({
         <div className="row">
           <div
             className={`${
-              sideMenu ? "col-xl-2 col-sm-4" : "col-lg-2 col-sm-4"
+              sideMenu ? "col-xl-2 col-sm-4" : "col-lg-3 col-sm-4"
             }`}
           >
             {/* footer copyright */}
@@ -59,12 +59,12 @@ const Footer = ({
           </div>
           <div
             className={`${
-              sideMenu ? "col-xl-2 col-sm-4" : "col-lg-2 col-sm-4"
+              sideMenu ? "col-xl-2 col-sm-4" : "col-lg-3 col-sm-4"
             }`}
           >
             <div className="footer-widget mb-30 ml-30">
               <div className="footer-title">
-                <h3>VỀ CHÚNG TÔI</h3>
+                <h3>GIỚI THIỆU CHUNG</h3>
               </div>
               <div className="footer-list">
                 <ul>
@@ -87,7 +87,7 @@ const Footer = ({
           </div>
           <div
             className={`${
-              sideMenu ? "col-xl-2 col-sm-4" : "col-lg-2 col-sm-4"
+              sideMenu ? "col-xl-2 col-sm-4" : "col-lg-3 col-sm-4"
             }`}
           >
             <div
@@ -98,29 +98,35 @@ const Footer = ({
               }`}
             >
               <div className="footer-title">
-                <h3>USEFUL LINKS</h3>
+                <h3>HỖ TRỢ KHÁCH HÀNG</h3>
               </div>
               <div className="footer-list">
                 <ul>
                   <li>
-                    <Link to={process.env.PUBLIC_URL + "#/"}>Returns</Link>
-                  </li>
-                  <li>
                     <Link to={process.env.PUBLIC_URL + "#/"}>
-                      Support Policy
+                      Hướng dẫn đặt hàng
                     </Link>
                   </li>
                   <li>
-                    <Link to={process.env.PUBLIC_URL + "#/"}>Size guide</Link>
+                    <Link to={process.env.PUBLIC_URL + "#/"}>
+                      Hướng dẫn thanh toán
+                    </Link>
                   </li>
                   <li>
-                    <Link to={process.env.PUBLIC_URL + "#/"}>FAQs</Link>
+                    <Link to={process.env.PUBLIC_URL + "#/"}>
+                      Chính sách vận chuyển
+                    </Link>
+                  </li>
+                  <li>
+                    <Link to={process.env.PUBLIC_URL + "#/"}>
+                      Chính sách bảo hành
+                    </Link>
                   </li>
                 </ul>
               </div>
             </div>
           </div>
-          <div
+          {/* <div
             className={`${
               sideMenu ? "col-xl-3 col-sm-4" : "col-lg-2 col-sm-6"
             }`}
@@ -176,10 +182,10 @@ const Footer = ({
                 </ul>
               </div>
             </div>
-          </div>
+          </div> */}
           <div
             className={`${
-              sideMenu ? "col-xl-3 col-sm-8" : "col-lg-4 col-sm-6"
+              sideMenu ? "col-xl-3 col-sm-8" : "col-lg-3 col-sm-6"
             }`}
           >
             {/* footer newsletter */}

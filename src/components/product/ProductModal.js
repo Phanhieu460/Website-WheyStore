@@ -16,22 +16,19 @@ function ProductModal(props) {
   const [gallerySwiper, getGallerySwiper] = useState(null);
   const [thumbnailSwiper, getThumbnailSwiper] = useState(null);
   const [selectedProductColor, setSelectedProductColor] = useState(
-    product.variation ? product.variation[0].color : ""
+    product.variation.length > 0 ? product.variation[0].smell : ""
   );
   const [selectedProductSize, setSelectedProductSize] = useState(
-    product.variation ? product.variation[0].size[0].name : ""
+    product.variation.length > 0 ? product.variation[0].size[0].name : ""
   );
   const [productStock, setProductStock] = useState(
-    product.variation ? product.variation[0].size[0].stock : product.stock
+    product.variation.length > 0
+      ? product.variation[0].size[0].stock
+      : product.stock
   );
   const [quantityCount, setQuantityCount] = useState(1);
 
-  const wishlistItem = props.wishlistitem;
-  const compareItem = props.compareitem;
-
   const addToCart = props.addtocart;
-  const addToWishlist = props.addtowishlist;
-  const addToCompare = props.addtocompare;
 
   const addToast = props.addtoast;
   const cartItems = props.cartitems;
@@ -143,14 +140,24 @@ function ProductModal(props) {
                   {discountedprice !== null ? (
                     <Fragment>
                       <span>
-                        {currency.currencySymbol + finaldiscountedprice}
+                        {currency.currencySymbol +
+                          Intl.NumberFormat("vi-VN").format(
+                            finaldiscountedprice
+                          ) +
+                          ".000"}
                       </span>{" "}
                       <span className="old">
-                        {currency.currencySymbol + finalproductprice}
+                        {currency.currencySymbol +
+                          Intl.NumberFormat("vi-VN").format(finalproductprice) +
+                          ".000"}
                       </span>
                     </Fragment>
                   ) : (
-                    <span>{currency.currencySymbol + finalproductprice} </span>
+                    <span>
+                      {currency.currencySymbol +
+                        Intl.NumberFormat("vi-VN").format(finalproductprice) +
+                        ".000"}{" "}
+                    </span>
                   )}
                 </div>
                 {product.rating && product.rating > 0 ? (
@@ -163,48 +170,47 @@ function ProductModal(props) {
                   ""
                 )}
                 <div className="pro-details-list">
-                  <p>{product.shortDescription}</p>
+                  <p
+                    dangerouslySetInnerHTML={{
+                      __html: product.shortDescription,
+                    }}
+                  ></p>
                 </div>
 
                 {product.variation ? (
                   <div className="pro-details-size-color">
                     <div className="pro-details-color-wrap">
-                      <span>Color</span>
+                      <span>Flavor</span>
                       <div className="pro-details-color-content">
                         {product.variation.map((single, key) => {
                           return (
-                            <label
-                              className={`pro-details-color-content--single ${single.color}`}
+                            <labe
+                              className={`pro-details-color-content--single`}
                               key={key}
                             >
                               <input
-                                type="radio"
-                                value={single.color}
+                                type="text"
+                                value={single.smell}
                                 name="product-color"
-                                checked={
-                                  single.color === selectedProductColor
-                                    ? "checked"
-                                    : ""
-                                }
                                 onChange={() => {
-                                  setSelectedProductColor(single.color);
+                                  setSelectedProductColor(single.smell);
                                   setSelectedProductSize(single.size[0].name);
                                   setProductStock(single.size[0].stock);
                                   setQuantityCount(1);
                                 }}
                               />
-                              <span className="checkmark"></span>
-                            </label>
+                              <span className="size-name">{single.smell}</span>
+                            </labe>
                           );
                         })}
                       </div>
                     </div>
                     <div className="pro-details-size">
-                      <span>Size</span>
+                      <span>Tripping</span>
                       <div className="pro-details-size-content">
                         {product.variation &&
                           product.variation.map((single) => {
-                            return single.color === selectedProductColor
+                            return single.smell === selectedProductColor
                               ? single.size.map((singleSize, key) => {
                                   return (
                                     <label
@@ -212,7 +218,7 @@ function ProductModal(props) {
                                       key={key}
                                     >
                                       <input
-                                        type="radio"
+                                        type="text"
                                         value={singleSize.name}
                                         checked={
                                           singleSize.name ===
@@ -250,7 +256,7 @@ function ProductModal(props) {
                         rel="noopener noreferrer"
                         target="_blank"
                       >
-                        Buy Now
+                        Mua Ngay
                       </a>
                     </div>
                   </div>
@@ -301,39 +307,11 @@ function ProductModal(props) {
                           disabled={productCartQty >= productStock}
                         >
                           {" "}
-                          Add To Cart{" "}
+                          Thêm Vào Giỏ Hàng{" "}
                         </button>
                       ) : (
-                        <button disabled>Out of Stock</button>
+                        <button disabled>Hết Hàng</button>
                       )}
-                    </div>
-                    <div className="pro-details-wishlist">
-                      <button
-                        className={wishlistItem !== undefined ? "active" : ""}
-                        disabled={wishlistItem !== undefined}
-                        title={
-                          wishlistItem !== undefined
-                            ? "Added to wishlist"
-                            : "Add to wishlist"
-                        }
-                        onClick={() => addToWishlist(product, addToast)}
-                      >
-                        <i className="pe-7s-like" />
-                      </button>
-                    </div>
-                    <div className="pro-details-compare">
-                      <button
-                        className={compareItem !== undefined ? "active" : ""}
-                        disabled={compareItem !== undefined}
-                        title={
-                          compareItem !== undefined
-                            ? "Added to compare"
-                            : "Add to compare"
-                        }
-                        onClick={() => addToCompare(product, addToast)}
-                      >
-                        <i className="pe-7s-shuffle" />
-                      </button>
                     </div>
                   </div>
                 )}

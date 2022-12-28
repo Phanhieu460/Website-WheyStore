@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import React, { useEffect, Suspense, lazy } from "react";
+import React, { Suspense, lazy } from "react";
 import ScrollToTop from "./helpers/scroll-top";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { ToastProvider } from "react-toast-notifications";
@@ -12,16 +12,19 @@ const Home = lazy(() => import("./pages/Home/Home"));
 
 // // shop pages
 
-// const ShopGridRightSidebar = lazy(() =>
-//   import("./pages/shop/ShopGridRightSidebar")
-// );
+const ShopGridRightSidebar = lazy(() =>
+  import("./pages/shop/ShopGridRightSidebar")
+);
 
 // // product pages
 const Product = lazy(() => import("./pages/shop-product/Product"));
 
 // // blog pages
 
-// const BlogNoSidebar = lazy(() => import("./pages/blog/BlogNoSidebar"));
+const BlogNoSidebar = lazy(() => import("./pages/blog/BlogNoSidebar"));
+const BlogDetailsStandard = lazy(() =>
+  import("./pages/blog/BlogDetailsStandard")
+);
 
 // // other pages
 // const About = lazy(() => import("./pages/other/About"));
@@ -31,7 +34,7 @@ const LoginRegister = lazy(() => import("./pages/other/LoginRegister"));
 
 const Cart = lazy(() => import("./pages/other/Cart"));
 // const Wishlist = lazy(() => import("./pages/other/Wishlist"));
-// const Checkout = lazy(() => import("./pages/other/Checkout"));
+const Checkout = lazy(() => import("./pages/other/Checkout"));
 
 // const NotFound = lazy(() => import("./pages/other/NotFound"));
 
@@ -67,10 +70,10 @@ const App = (props) => {
 
                 {/* Shop pages */}
 
-                {/* <Route
-                  path={process.env.PUBLIC_URL + "/shop-grid-right-sidebar"}
+                <Route
+                  path={process.env.PUBLIC_URL + "/shop"}
                   component={ShopGridRightSidebar}
-                /> */}
+                />
 
                 {/* Shop product pages */}
                 <Route
@@ -82,10 +85,14 @@ const App = (props) => {
 
                 {/* Blog pages */}
 
-                {/* <Route
-                  path={process.env.PUBLIC_URL + "/blog-no-sidebar"}
+                <Route
+                  path={process.env.PUBLIC_URL + "/blog"}
                   component={BlogNoSidebar}
-                /> */}
+                />
+                <Route
+                  path={process.env.PUBLIC_URL + "/blog-details"}
+                  component={BlogDetailsStandard}
+                />
 
                 {/* Other pages */}
                 <Route
@@ -104,6 +111,10 @@ const App = (props) => {
                   path={process.env.PUBLIC_URL + "/contact"}
                   component={Contact}
                 />
+                <Route
+                  path={process.env.PUBLIC_URL + "/checkout"}
+                  component={Checkout}
+                />
                 {/* <Route
                   path={process.env.PUBLIC_URL + "/about"}
                   component={About}
@@ -114,10 +125,7 @@ const App = (props) => {
                   path={process.env.PUBLIC_URL + "/wishlist"}
                   component={Wishlist}
                 />
-                <Route
-                  path={process.env.PUBLIC_URL + "/checkout"}
-                  component={Checkout}
-                />
+               
 
                 <Route
                   path={process.env.PUBLIC_URL + "/not-found"}
