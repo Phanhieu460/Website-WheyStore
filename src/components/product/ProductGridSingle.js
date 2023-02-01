@@ -33,7 +33,7 @@ const ProductGridSingle = ({
   const finalDiscountedPrice = +(
     discountedPrice * currency.currencyRate
   ).toFixed(2);
-  console.log(product, "product");
+
   return (
     <ToastProvider>
       <div
@@ -151,18 +151,28 @@ const ProductGridSingle = ({
                 {discountedPrice !== null ? (
                   <Fragment>
                     <span>
-                      {currency.currencySymbol + finalDiscountedPrice}
+                      {currency.currencySymbol +
+                        Intl.NumberFormat("vi-VN").format(
+                          finalDiscountedPrice
+                        ) +
+                        ".000"}
                     </span>{" "}
                     <span className="old">
-                      {currency.currencySymbol + finalProductPrice}
+                      {currency.currencySymbol +
+                        Intl.NumberFormat("vi-VN").format(finalProductPrice) +
+                        ".000"}
                     </span>
                   </Fragment>
                 ) : (
-                  <span>{currency.currencySymbol + finalProductPrice} </span>
+                  <span>
+                    {currency.currencySymbol +
+                      Intl.NumberFormat("vi-VN").format(finalProductPrice) +
+                      ".000"}{" "}
+                  </span>
                 )}
               </div>
             </div>
-            <div className="pro-wishlist-2">
+            {/* <div className="pro-wishlist-2">
               <button
                 className={wishlistItem !== undefined ? "active" : ""}
                 disabled={wishlistItem !== undefined}
@@ -175,12 +185,12 @@ const ProductGridSingle = ({
               >
                 <i className="fa fa-heart-o" />
               </button>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>
       {/* product modal */}
-      {/* <ProductModal
+      <ProductModal
         show={modalShow}
         onHide={() => setModalShow(false)}
         product={product}
@@ -195,7 +205,7 @@ const ProductGridSingle = ({
         addtowishlist={addToWishlist}
         addtocompare={addToCompare}
         addtoast={addToast}
-      /> */}
+      />
     </ToastProvider>
   );
 };

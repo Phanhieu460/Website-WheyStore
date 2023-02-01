@@ -11,11 +11,11 @@ import Layout from "../../layout/Layout";
 
 const Product = ({ location, product }) => {
   const { pathname } = location;
-  console.log(product, "product");
+
   return (
     <Fragment>
       <MetaTags>
-        <title>Flone | Sản Phẩm</title>
+        <title>WheyHome | Sản Phẩm</title>
         <meta
           name="description"
           content="Product page of flone react minimalist eCommerce template."

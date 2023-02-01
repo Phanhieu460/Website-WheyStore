@@ -56,13 +56,10 @@ const Checkout = ({ location, cartItems, currency }) => {
                           <label>Địa Chỉ Giao Hàng</label>
                           <input
                             className="billing-address"
-                            placeholder="House number and street name"
+                            placeholder="Địa chỉ"
                             type="text"
                           />
-                          <input
-                            placeholder="Apartment, suite, unit etc."
-                            type="text"
-                          />
+                          <input placeholder="Địa chỉ cụ thể" type="text" />
                         </div>
                       </div>
 
@@ -89,14 +86,10 @@ const Checkout = ({ location, cartItems, currency }) => {
                 <div className="col-lg-4">
                   <div className="col-lg-12">
                     <div className="payment-methods">
-                      <h3>Thanh Toán</h3>
+                      <h3>Phương Thức Thanh Toán</h3>
                       <div className="payment-item">
                         <input type="radio" />
                         <span>Thanh toán khi nhận hàng</span>
-                      </div>
-                      <div className="payment-item">
-                        <input type="radio" />
-                        <span>Thanh toán chuyển khoản</span>
                       </div>
                       <div className="payment-item">
                         <input type="radio" />
@@ -120,11 +113,11 @@ const Checkout = ({ location, cartItems, currency }) => {
                           <ul>
                             {cartItems.map((cartItem, key) => {
                               const discountedPrice = getDiscountPrice(
-                                cartItem.price,
+                                cartItem.entryPrice,
                                 cartItem.discount
                               );
                               const finalProductPrice = (
-                                cartItem.price * currency.currencyRate
+                                cartItem.entryPrice * currency.currencyRate
                               ).toFixed(2);
                               const finalDiscountedPrice = (
                                 discountedPrice * currency.currencyRate
@@ -143,14 +136,21 @@ const Checkout = ({ location, cartItems, currency }) => {
                                   <span className="order-price">
                                     {discountedPrice !== null
                                       ? currency.currencySymbol +
-                                        (
-                                          finalDiscountedPrice *
-                                          cartItem.quantity
-                                        ).toFixed(2)
+                                        Intl.NumberFormat("vi-VN").format(
+                                          (
+                                            finalDiscountedPrice *
+                                            cartItem.quantity
+                                          ).toFixed(2)
+                                        ) +
+                                        ".000"
                                       : currency.currencySymbol +
-                                        (
-                                          finalProductPrice * cartItem.quantity
-                                        ).toFixed(2)}
+                                        Intl.NumberFormat("vi-VN").format(
+                                          (
+                                            finalProductPrice *
+                                            cartItem.quantity
+                                          ).toFixed(2)
+                                        ) +
+                                        ".000"}
                                   </span>
                                 </li>
                               );
@@ -159,8 +159,10 @@ const Checkout = ({ location, cartItems, currency }) => {
                         </div>
                         <div className="your-order-bottom">
                           <ul>
-                            <li className="your-order-shipping">Shipping</li>
-                            <li>Free shipping</li>
+                            <li className="your-order-shipping">
+                              Phí Vận Chuyển
+                            </li>
+                            <li>Miễn Phí</li>
                           </ul>
                         </div>
                         <div className="your-order-total">
@@ -168,7 +170,10 @@ const Checkout = ({ location, cartItems, currency }) => {
                             <li className="order-total">Tổng Cộng</li>
                             <li>
                               {currency.currencySymbol +
-                                cartTotalPrice.toFixed(2)}
+                                Intl.NumberFormat("vi-VN").format(
+                                  cartTotalPrice.toFixed(2)
+                                ) +
+                                ".000"}
                             </li>
                           </ul>
                         </div>
@@ -213,7 +218,7 @@ Checkout.propTypes = {
 
 const mapStateToProps = (state) => {
   return {
-    cartItems: state.cartData,
+    cartItems: state.cartData.cartItems,
     currency: state.currencyData,
   };
 };

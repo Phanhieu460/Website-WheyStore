@@ -1,6 +1,5 @@
 // get products
 export const getProducts = (products, category, type, limit) => {
-  console.log(products, "test");
   const finalProducts = category
     ? products?.filter(
         (product) => product.category.filter((single) => single === category)[0]
@@ -8,7 +7,7 @@ export const getProducts = (products, category, type, limit) => {
     : products;
 
   if (type && type === "new") {
-    const newProducts = finalProducts?.filter((single) => single.new);
+    const newProducts = finalProducts?.filter((single) => single.latestProduct);
     return newProducts.slice(0, limit ? limit : newProducts.length);
   }
   if (type && type === "bestSeller") {
@@ -34,7 +33,7 @@ export const getDiscountPrice = (price, discount) => {
 
 // get product cart quantity
 export const getProductCartQuantity = (cartItems, product, color, size) => {
-  let productInCart = cartItems.filter(
+  let productInCart = cartItems?.filter(
     (single) =>
       single.id === product._id &&
       (single.selectedProductColor
@@ -42,16 +41,16 @@ export const getProductCartQuantity = (cartItems, product, color, size) => {
         : true) &&
       (single.selectedProductSize ? single.selectedProductSize === size : true)
   )[0];
-  if (cartItems.length >= 1 && productInCart) {
+  if (cartItems?.length >= 1 && productInCart) {
     if (product.variation) {
-      return cartItems.filter(
+      return cartItems?.filter(
         (single) =>
           single.id === product._id &&
           single.selectedProductColor === color &&
           single.selectedProductSize === size
       )[0].quantity;
     } else {
-      return cartItems.filter((single) => product._id === single.id)[0]
+      return cartItems?.filter((single) => product._id === single.id)[0]
         .quantity;
     }
   } else {
@@ -172,9 +171,9 @@ export const getProductsIndividualSizes = (products) => {
   products &&
     products.map((product) => {
       return (
-        product.variation &&
+        product.variation.length > 0 &&
         product.variation.map((single) => {
-          return single.size.map((single) => {
+          return single?.size?.map((single) => {
             return productSizes.push(single.name);
           });
         })

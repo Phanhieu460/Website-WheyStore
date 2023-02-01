@@ -1,16 +1,15 @@
 import PropTypes from "prop-types";
 import React, { Fragment } from "react";
 import { connect } from "react-redux";
-import { addToCart } from "../../redux/actions/cartActions";
-import { addToWishlist } from "../../redux/actions/wishlistActions";
+// import { addToCart } from "../../redux/actions/cartActions";
 import { addToCompare } from "../../redux/actions/compareActions";
 import ProductGridListSingle from "../../components/product/ProductGridListSingle";
+import { addToCart } from "../../redux/actions/cartActions";
 
 const ProductGrid = ({
   products,
   currency,
   addToCart,
-  addToWishlist,
   addToCompare,
   cartItems,
   wishlistItems,
@@ -28,20 +27,9 @@ const ProductGrid = ({
             product={product}
             currency={currency}
             addToCart={addToCart}
-            addToWishlist={addToWishlist}
             addToCompare={addToCompare}
             cartItem={
-              cartItems.filter((cartItem) => cartItem.id === product._id)[0]
-            }
-            wishlistItem={
-              wishlistItems.filter(
-                (wishlistItem) => wishlistItem.id === product._id
-              )[0]
-            }
-            compareItem={
-              compareItems.filter(
-                (compareItem) => compareItem.id === product._id
-              )[0]
+              cartItems?.filter((cartItem) => cartItem.id === product._id)[0]
             }
             key={product._id}
           />
@@ -54,7 +42,6 @@ const ProductGrid = ({
 ProductGrid.propTypes = {
   addToCart: PropTypes.func,
   addToCompare: PropTypes.func,
-  addToWishlist: PropTypes.func,
   cartItems: PropTypes.array,
   compareItems: PropTypes.array,
   currency: PropTypes.object,
@@ -67,8 +54,7 @@ ProductGrid.propTypes = {
 const mapStateToProps = (state) => {
   return {
     currency: state.currencyData,
-    cartItems: state.cartData,
-    wishlistItems: state.wishlistData,
+    cartItems: state.cartData.cartItems,
     compareItems: state.compareData,
   };
 };
@@ -91,9 +77,6 @@ const mapDispatchToProps = (dispatch) => {
           selectedProductSize
         )
       );
-    },
-    addToWishlist: (item, addToast) => {
-      dispatch(addToWishlist(item, addToast));
     },
     addToCompare: (item, addToast) => {
       dispatch(addToCompare(item, addToast));

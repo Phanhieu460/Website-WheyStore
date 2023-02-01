@@ -12,7 +12,7 @@ const Contact = ({ location }) => {
   return (
     <Fragment>
       <MetaTags>
-        <title>Flone | Contact</title>
+        <title>WheyHome | Contact</title>
         <meta
           name="description"
           content="Contact of flone react minimalist eCommerce template."
@@ -49,7 +49,9 @@ const Contact = ({ location }) => {
                     </div>
                     <div className="contact-info-dec">
                       <p>
-                        <a href="mailto:wheystore@.com">wheystore@gmail.com</a>
+                        <a href="mailto:wheyhome@gmail.com">
+                          wheyhome@gmail.com
+                        </a>
                       </p>
                     </div>
                   </div>

@@ -1,18 +1,12 @@
 import PropTypes from "prop-types";
 import React from "react";
 import { Link } from "react-router-dom";
-import { connect } from "react-redux";
+import { connect, useDispatch, useSelector } from "react-redux";
 import MenuCart from "./sub-components/MenuCart";
 import { deleteFromCart } from "../../redux/actions/cartActions";
+import { logout } from "../../redux/actions/userActions";
 
-const IconGroup = ({
-  currency,
-  cartData,
-  wishlistData,
-  compareData,
-  deleteFromCart,
-  iconWhiteClass,
-}) => {
+const IconGroup = ({ currency, cartData, deleteFromCart, iconWhiteClass }) => {
   const handleClick = (e) => {
     e.currentTarget.nextSibling.classList.toggle("active");
   };
@@ -22,6 +16,14 @@ const IconGroup = ({
       "#offcanvas-mobile-menu"
     );
     offcanvasMobileMenu.classList.add("active");
+  };
+
+  const dispatch = useDispatch();
+  const userLogin = useSelector((state) => state.userLogin);
+  const { userInfo } = userLogin;
+
+  const logoutHandler = () => {
+    dispatch(logout());
   };
 
   return (
@@ -49,21 +51,30 @@ const IconGroup = ({
           <i className="pe-7s-user-female" />
         </button>
         <div className="account-dropdown">
-          <ul>
-            <li>
-              <Link to={process.env.PUBLIC_URL + "/login-register"}>
-                Đăng nhập
-              </Link>
-            </li>
-            <li>
-              <Link to={process.env.PUBLIC_URL + "/login-register"}>
-                Đăng ký
-              </Link>
-            </li>
-            <li>
-              <Link to={process.env.PUBLIC_URL + "/my-account"}>Tài khoản</Link>
-            </li>
-          </ul>
+          {userInfo ? (
+            <ul>
+              <li>Xin chào, {userInfo.name}</li>
+              <li>
+                <Link className="dropdown-item" to="/profile">
+                  Profile
+                </Link>
+              </li>
+              <li>
+                <Link to="#" onClick={logoutHandler}>
+                  Đăng Xuất
+                </Link>
+              </li>
+            </ul>
+          ) : (
+            <ul>
+              <li>
+                <Link to={process.env.PUBLIC_URL + "/login"}>Đăng nhập</Link>
+              </li>
+              <li>
+                <Link to={process.env.PUBLIC_URL + "/register"}>Đăng ký</Link>
+              </li>
+            </ul>
+          )}
         </div>
       </div>
 
@@ -71,7 +82,7 @@ const IconGroup = ({
         <button className="icon-cart" onClick={(e) => handleClick(e)}>
           <i className="pe-7s-shopbag" />
           <span className="count-style">
-            {cartData && cartData.length ? cartData.length : 0}
+            {cartData && cartData?.length ? cartData?.length : 0}
           </span>
         </button>
         {/* menu cart */}
@@ -113,7 +124,7 @@ IconGroup.propTypes = {
 const mapStateToProps = (state) => {
   return {
     currency: state.currencyData,
-    cartData: state.cartData,
+    cartData: state.cartData.cartItems,
     wishlistData: state.wishlistData,
     compareData: state.compareData,
   };

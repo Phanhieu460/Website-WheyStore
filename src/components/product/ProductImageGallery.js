@@ -24,23 +24,23 @@ const ProductImageGallery = ({ product }) => {
   const gallerySwiperParams = {
     getSwiper: getGallerySwiper,
     spaceBetween: 10,
-    loopedSlides: 4,
+    loopedSlides: 2,
     loop: true,
-    effect: "fade"
+    effect: "fade",
   };
 
   const thumbnailSwiperParams = {
     getSwiper: getThumbnailSwiper,
     spaceBetween: 10,
-    slidesPerView: 4,
-    loopedSlides: 4,
+    slidesPerView: 2,
+    loopedSlides: 2,
     touchRatio: 0.2,
     freeMode: true,
     loop: true,
     slideToClickedSlide: true,
     navigation: {
       nextEl: ".swiper-button-next",
-      prevEl: ".swiper-button-prev"
+      prevEl: ".swiper-button-prev",
     },
     renderPrevButton: () => (
       <button className="swiper-button-prev ht-swiper-button-nav">
@@ -51,7 +51,7 @@ const ProductImageGallery = ({ product }) => {
       <button className="swiper-button-next ht-swiper-button-nav">
         <i className="pe-7s-angle-right" />
       </button>
-    )
+    ),
   };
 
   return (
@@ -98,7 +98,7 @@ const ProductImageGallery = ({ product }) => {
       </div>
       <div className="product-small-image-wrapper mt-15">
         <Swiper {...thumbnailSwiperParams}>
-          {product.image &&
+          {product.image.length > 1 &&
             product.image.map((single, key) => {
               return (
                 <div key={key}>
@@ -119,7 +119,7 @@ const ProductImageGallery = ({ product }) => {
 };
 
 ProductImageGallery.propTypes = {
-  product: PropTypes.object
+  product: PropTypes.object,
 };
 
 export default ProductImageGallery;

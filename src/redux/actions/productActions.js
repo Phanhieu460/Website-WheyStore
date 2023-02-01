@@ -1,4 +1,5 @@
 import axios from "axios";
+import { URL } from "../Url";
 export const FETCH_PRODUCTS_SUCCESS = "FETCH_PRODUCTS_SUCCESS";
 
 const fetchProductsSuccess = (products) => ({
@@ -10,7 +11,7 @@ const fetchProductsSuccess = (products) => ({
 export const fetchProducts = () => {
   return (dispatch) => {
     axios
-      .get("http://localhost:4000/products")
+      .get(`${URL}/api/products`)
       .then((res) => {
         dispatch(fetchProductsSuccess(res.data.products));
       })

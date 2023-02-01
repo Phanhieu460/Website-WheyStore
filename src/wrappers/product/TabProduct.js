@@ -41,11 +41,11 @@ const TabProduct = ({
                 <h4>Bán Chạy</h4>
               </Nav.Link>
             </Nav.Item>
-            <Nav.Item>
+            {/* <Nav.Item>
               <Nav.Link eventKey="saleItems">
                 <h4>Giảm Giá</h4>
               </Nav.Link>
-            </Nav.Item>
+            </Nav.Item> */}
           </Nav>
           <Tab.Content>
             <Tab.Pane eventKey="newArrival">

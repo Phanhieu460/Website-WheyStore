@@ -17,13 +17,15 @@ const About = ({ location }) => {
   return (
     <Fragment>
       <MetaTags>
-        <title>Flone | About us</title>
+        <title>WheyHome | About us</title>
         <meta
           name="description"
           content="About page of flone react minimalist eCommerce template."
         />
       </MetaTags>
-      <BreadcrumbsItem to={process.env.PUBLIC_URL + "/"}>TRANG CHỦ</BreadcrumbsItem>
+      <BreadcrumbsItem to={process.env.PUBLIC_URL + "/"}>
+        TRANG CHỦ
+      </BreadcrumbsItem>
       <BreadcrumbsItem to={process.env.PUBLIC_URL + pathname}>
         VỀ CHÚNG TÔI
       </BreadcrumbsItem>

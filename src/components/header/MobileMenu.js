@@ -6,15 +6,15 @@ import MobileWidgets from "./sub-components/MobileWidgets";
 const MobileMenu = () => {
   useEffect(() => {
     const offCanvasNav = document.querySelector("#offcanvas-navigation");
-    // const offCanvasNavSubMenu = offCanvasNav.querySelectorAll(".sub-menu");
+    const offCanvasNavSubMenu = offCanvasNav.querySelectorAll(".sub-menu");
     const anchorLinks = offCanvasNav.querySelectorAll("a");
 
-    // for (let i = 0; i < offCanvasNavSubMenu.length; i++) {
-    //   offCanvasNavSubMenu[i].insertAdjacentHTML(
-    //     "beforebegin",
-    //     "<span class='menu-expand'><i></i></span>"
-    //   );
-    // }
+    for (let i = 0; i < offCanvasNavSubMenu.length; i++) {
+      offCanvasNavSubMenu[i].insertAdjacentHTML(
+        "beforebegin",
+        "<span class='menu-expand'><i></i></span>"
+      );
+    }
 
     const menuExpand = offCanvasNav.querySelectorAll(".menu-expand");
     const numMenuExpand = menuExpand.length;
@@ -58,7 +58,7 @@ const MobileMenu = () => {
           <MobileMenuSearch />
 
           {/* mobile nav menu */}
-          {/* <MobileNavMenu /> */}
+          <MobileNavMenu />
 
           {/* mobile widgets */}
           <MobileWidgets />

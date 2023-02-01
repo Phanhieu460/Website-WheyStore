@@ -60,9 +60,9 @@ const NavMenu = ({ strings, menuWhiteClass, sidebarMenu }) => {
               </li>
             </ul>
           </li> */}
-          <li>
+          {/* <li>
             <Link to={process.env.PUBLIC_URL + "/blog"}>Blog</Link>
-          </li>
+          </li> */}
           <li>
             <Link to={process.env.PUBLIC_URL + "/contact"}>Liên hệ</Link>
           </li>

@@ -33,7 +33,7 @@ const Cart = ({
   return (
     <Fragment>
       <MetaTags>
-        <title>Flone | Giỏ Hàng</title>
+        <title>WheyHome | Giỏ Hàng</title>
         <meta
           name="description"
           content="Cart page of flone react minimalist eCommerce template."
@@ -118,7 +118,7 @@ const Cart = ({
                                   >
                                     {cartItem.name}
                                   </Link>
-                                  {cartItem.selectedProductColor &&
+                                  {/* {cartItem.selectedProductColor &&
                                   cartItem.selectedProductSize ? (
                                     <div className="cart-item-variation">
                                       <span>
@@ -130,7 +130,7 @@ const Cart = ({
                                     </div>
                                   ) : (
                                     ""
-                                  )}
+                                  )} */}
                                 </td>
 
                                 <td className="product-price-cart">
@@ -187,16 +187,16 @@ const Cart = ({
                                           quantityCount
                                         )
                                       }
-                                      disabled={
-                                        cartItem !== undefined &&
-                                        cartItem.quantity &&
-                                        cartItem.quantity >=
-                                          cartItemStock(
-                                            cartItem,
-                                            cartItem.selectedProductColor,
-                                            cartItem.selectedProductSize
-                                          )
-                                      }
+                                      // disabled={
+                                      //   cartItem !== undefined &&
+                                      //   cartItem.quantity &&
+                                      //   cartItem.quantity >=
+                                      //     cartItemStock(
+                                      //       cartItem,
+                                      //       cartItem.selectedProductColor,
+                                      //       cartItem.selectedProductSize
+                                      //     )
+                                      // }
                                     >
                                       +
                                     </button>
@@ -256,69 +256,6 @@ const Cart = ({
                 </div>
 
                 <div className="row">
-                  {/* <div className="col-lg-4 col-md-6">
-                    <div className="cart-tax">
-                      <div className="title-wrap">
-                        <h4 className="cart-bottom-title section-bg-gray">
-                          Estimate Shipping And Tax
-                        </h4>
-                      </div>
-                      <div className="tax-wrapper">
-                        <p>
-                          Enter your destination to get a shipping estimate.
-                        </p>
-                        <div className="tax-select-wrapper">
-                          <div className="tax-select">
-                            <label>* Country</label>
-                            <select className="email s-email s-wid">
-                              <option>Bangladesh</option>
-                              <option>Albania</option>
-                              <option>Åland Islands</option>
-                              <option>Afghanistan</option>
-                              <option>Belgium</option>
-                            </select>
-                          </div>
-                          <div className="tax-select">
-                            <label>* Region / State</label>
-                            <select className="email s-email s-wid">
-                              <option>Bangladesh</option>
-                              <option>Albania</option>
-                              <option>Åland Islands</option>
-                              <option>Afghanistan</option>
-                              <option>Belgium</option>
-                            </select>
-                          </div>
-                          <div className="tax-select">
-                            <label>* Zip/Postal Code</label>
-                            <input type="text" />
-                          </div>
-                          <button className="cart-btn-2" type="submit">
-                            Get A Quote
-                          </button>
-                        </div>
-                      </div>
-                    </div>
-                  </div> */}
-
-                  {/* <div className="col-lg-4 col-md-6">
-                    <div className="discount-code-wrapper">
-                      <div className="title-wrap">
-                        <h4 className="cart-bottom-title section-bg-gray">
-                          Use Coupon Code
-                        </h4>
-                      </div>
-                      <div className="discount-code">
-                        <p>Enter your coupon code if you have one.</p>
-                        <form>
-                          <input type="text" required name="name" />
-                          <button className="cart-btn-2" type="submit">
-                            Apply Coupon
-                          </button>
-                        </form>
-                      </div>
-                    </div>
-                  </div> */}
-
                   <div className="col-lg-4 col-md-12">
                     <div className="grand-totall">
                       <div className="title-wrap">
@@ -347,8 +284,10 @@ const Cart = ({
                             ".000"}
                         </span>
                       </h4>
-                      <Link to={process.env.PUBLIC_URL + "/checkout"}>
-                        Tiến Hành Kiểm Tra
+                      <Link
+                        to={process.env.PUBLIC_URL + "/login?redirect=shipping"}
+                      >
+                        Thanh Toán
                       </Link>
                     </div>
                   </div>
@@ -390,7 +329,7 @@ Cart.propTypes = {
 
 const mapStateToProps = (state) => {
   return {
-    cartItems: state.cartData,
+    cartItems: state.cartData.cartItems,
     currency: state.currencyData,
   };
 };

@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 const MobileNavMenu = ({ strings }) => {
   return (
     <nav className="offcanvas-navigation" id="offcanvas-navigation">
-      <ul>
+      {/* <ul>
         <li className="menu-item-has-children">
           <Link to={process.env.PUBLIC_URL + "/"}>Home</Link>
           <ul className="sub-menu">
@@ -415,6 +415,61 @@ const MobileNavMenu = ({ strings }) => {
           <Link to={process.env.PUBLIC_URL + "/contact"}>
             {strings["contact_us"]}
           </Link>
+        </li>
+      </ul> */}
+      <ul>
+        <li>
+          <Link to={process.env.PUBLIC_URL + "/"}>Trang chủ</Link>
+        </li>
+        <li>
+          <Link to={process.env.PUBLIC_URL + "/shop"}> Sản phẩm</Link>
+        </li>
+        {/* <li>
+            <Link to={process.env.PUBLIC_URL + "/"}>
+              Pages
+              {sidebarMenu ? (
+                <span>
+                  <i className="fa fa-angle-right"></i>
+                </span>
+              ) : (
+                <i className="fa fa-angle-down" />
+              )}
+            </Link>
+            <ul className="submenu">
+              <li>
+                <Link to={process.env.PUBLIC_URL + "/cart"}>Giỏ hàng</Link>
+              </li>
+              <li>
+                <Link to={process.env.PUBLIC_URL + "/checkout"}>
+                  Thanh toán
+                </Link>
+              </li>
+              <li>
+                <Link to={process.env.PUBLIC_URL + "/my-account"}>
+                  Tài Khoản
+                </Link>
+              </li>
+              <li>
+                <Link to={process.env.PUBLIC_URL + "/login-register"}>
+                  Đăng nhập
+                </Link>
+              </li>
+              <li>
+                <Link to={process.env.PUBLIC_URL + "/about"}>Về chúng tôi</Link>
+              </li>
+              <li>
+                <Link to={process.env.PUBLIC_URL + "/contact"}>Liên hệ</Link>
+              </li>
+              <li>
+                <Link to={process.env.PUBLIC_URL + "/not-found"}>404 Page</Link>
+              </li>
+            </ul>
+          </li> */}
+        <li>
+          <Link to={process.env.PUBLIC_URL + "/blog"}>Blog</Link>
+        </li>
+        <li>
+          <Link to={process.env.PUBLIC_URL + "/contact"}>Liên hệ</Link>
         </li>
       </ul>
     </nav>

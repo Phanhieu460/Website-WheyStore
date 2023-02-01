@@ -62,7 +62,7 @@ const MenuCart = ({ cartData, currency, deleteFromCart }) => {
                           Intl.NumberFormat("vi-VN").format(finalProductPrice) +
                           ".000"}
                     </span>
-                    {single.selectedProductColor &&
+                    {/* {single.selectedProductColor &&
                     single.selectedProductSize ? (
                       <div className="cart-item-variation">
                         <span>Smell: {single.selectedProductColor}</span>
@@ -70,7 +70,7 @@ const MenuCart = ({ cartData, currency, deleteFromCart }) => {
                       </div>
                     ) : (
                       ""
-                    )}
+                    )} */}
                   </div>
                   <div className="shopping-cart-delete">
                     <button onClick={() => deleteFromCart(single, addToast)}>
@@ -97,7 +97,7 @@ const MenuCart = ({ cartData, currency, deleteFromCart }) => {
             </Link>
             <Link
               className="default-btn"
-              to={process.env.PUBLIC_URL + "/checkout"}
+              to={process.env.PUBLIC_URL + "/login?redirect=shipping"}
             >
               Thanh toán
             </Link>

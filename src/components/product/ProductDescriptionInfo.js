@@ -4,9 +4,7 @@ import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { getProductCartQuantity } from "../../helpers/product";
 import { addToCart } from "../../redux/actions/cartActions";
-import { addToWishlist } from "../../redux/actions/wishlistActions";
 import { addToCompare } from "../../redux/actions/compareActions";
-import Rating from "./sub-components/ProductRating";
 
 const ProductDescriptionInfo = ({
   product,
@@ -36,7 +34,6 @@ const ProductDescriptionInfo = ({
     selectedProductColor,
     selectedProductSize
   );
-  console.log(productStock, "zzzz");
 
   return (
     <div className="product-details-content ml-70">
@@ -72,14 +69,14 @@ const ProductDescriptionInfo = ({
         dangerouslySetInnerHTML={{ __html: product.shortDescription }}
       ></div>
 
-      {product.variation.length > 0 ? (
+      {/* {product.variation.length > 0 ? (
         <div className="pro-details-size-color">
           <div className="pro-details-color-wrap">
             <div className="pro-details-color-content">
+              <span>Flavor</span>
               {product.variation.map((single, key) => {
                 return (
                   <>
-                    <span>Flavor</span>
                     <label
                       className={`pro-details-color-content--single`}
                       key={key}
@@ -104,13 +101,13 @@ const ProductDescriptionInfo = ({
           </div>
           <div className="pro-details-size">
             <div className="pro-details-size-content">
+              <span>Tripping</span>
               {product.variation.length > 0 &&
                 product.variation.map((single) => {
                   return single.smell === selectedProductColor
                     ? single.size.map((singleSize, key) => {
                         return (
                           <>
-                            <span>Tripping</span>
                             <label
                               className={`pro-details-size-content--single`}
                               key={key}
@@ -143,7 +140,7 @@ const ProductDescriptionInfo = ({
         </div>
       ) : (
         ""
-      )}
+      )} */}
       {product.affiliateLink ? (
         <div className="pro-details-quality">
           <div className="pro-details-cart btn-hover ml-0">
@@ -306,7 +303,6 @@ const ProductDescriptionInfo = ({
 ProductDescriptionInfo.propTypes = {
   addToCart: PropTypes.func,
   addToCompare: PropTypes.func,
-  addToWishlist: PropTypes.func,
   addToast: PropTypes.func,
   cartItems: PropTypes.array,
   compareItem: PropTypes.array,
@@ -336,12 +332,6 @@ const mapDispatchToProps = (dispatch) => {
           selectedProductSize
         )
       );
-    },
-    addToWishlist: (item, addToast) => {
-      dispatch(addToWishlist(item, addToast));
-    },
-    addToCompare: (item, addToast) => {
-      dispatch(addToCompare(item, addToast));
     },
   };
 };

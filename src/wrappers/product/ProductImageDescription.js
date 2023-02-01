@@ -18,14 +18,8 @@ const ProductImageDescription = ({
   wishlistItems,
   compareItems,
 }) => {
-  const wishlistItem = wishlistItems.filter(
-    (wishlistItem) => wishlistItem.id === product._id
-  )[0];
-  const compareItem = compareItems.filter(
-    (compareItem) => compareItem.id === product._id
-  )[0];
   const { addToast } = useToasts();
-  console.log(Number(product.entryPrice), "Image des");
+
   const discountedPrice = getDiscountPrice(
     product.entryPrice,
     product.discount
@@ -69,8 +63,6 @@ const ProductImageDescription = ({
               finalDiscountedPrice={finalDiscountedPrice}
               finalProductPrice={finalProductPrice}
               cartItems={cartItems}
-              wishlistItem={wishlistItem}
-              compareItem={compareItem}
               addToast={addToast}
             />
           </div>
@@ -88,15 +80,12 @@ ProductImageDescription.propTypes = {
   product: PropTypes.object,
   spaceBottomClass: PropTypes.string,
   spaceTopClass: PropTypes.string,
-  wishlistItems: PropTypes.array,
 };
 
 const mapStateToProps = (state) => {
   return {
     currency: state.currencyData,
-    cartItems: state.cartData,
-    wishlistItems: state.wishlistData,
-    compareItems: state.compareData,
+    cartItems: state.cartData.cartItems,
   };
 };
 

@@ -5,7 +5,6 @@ import TabProduct from "../../wrappers/product/TabProduct";
 import Slider from "../../wrappers/slider/Slider";
 import Banner from "../../wrappers/banner/Banner";
 import ProductSlider from "../../wrappers/product/ProductSlider";
-import BlogFeatured from "../../wrappers/blog-featured/BlogFeatured";
 
 const Home = () => {
   return (
@@ -23,9 +22,9 @@ const Home = () => {
         {/* Banner */}
         <Banner spaceBottomClass="pb-70" />
         {/* product slider */}
-        <ProductSlider category="wheyprotein" />
+        <ProductSlider category="preworkout" />
         {/* blog */}
-        <BlogFeatured spaceBottomClass="pb-55" spaceTopClass="pt-95" />
+        {/* <BlogFeatured spaceBottomClass="pb-55" spaceTopClass="pt-95" /> */}
       </Layout>
     </Fragment>
   );

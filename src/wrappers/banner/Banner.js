@@ -11,13 +11,11 @@ const Banner = ({ spaceBottomClass }) => {
             <div className="single-banner mb-30">
               <a href="product-details.html">
                 <img
-                  src={
-                    process.env.PUBLIC_URL + "/assets/img/banner/banner-43.png"
-                  }
+                  src="https://bizweb.dktcdn.net/100/011/344/themes/857119/assets/right_banner_1.jpg?1675236882706"
                   alt=""
                 />
               </a>
-              <div className="banner-content-33-2 banner-content-33-2-position1">
+              {/* <div className="banner-content-33-2 banner-content-33-2-position1">
                 <h4>Covid - 19</h4>
                 <h2>
                   Medix Mask <br />
@@ -26,20 +24,18 @@ const Banner = ({ spaceBottomClass }) => {
                 <Link to={process.env.PUBLIC_URL + "/shop-grid-standard"}>
                   Shop Now
                 </Link>
-              </div>
+              </div> */}
             </div>
           </div>
-          <div className="col-width-banner33-2">
+          <div className="col-width-banner33-1">
             <div className="single-banner mb-30">
               <a href="product-details.html">
                 <img
-                  src={
-                    process.env.PUBLIC_URL + "/assets/img/banner/banner-44.png"
-                  }
+                  src="https://bizweb.dktcdn.net/100/011/344/themes/857119/assets/right_banner_2.jpg?1675236882706"
                   alt=""
                 />
               </a>
-              <div className="banner-content-33-2 banner-content-33-2-position2">
+              {/* <div className="banner-content-33-2 banner-content-33-2-position2">
                 <h2>
                   Hand Gloves <br />
                   Up To 30% Off
@@ -47,20 +43,18 @@ const Banner = ({ spaceBottomClass }) => {
                 <Link to={process.env.PUBLIC_URL + "/shop-grid-standard"}>
                   Shop Now
                 </Link>
-              </div>
+              </div> */}
             </div>
           </div>
           <div className="col-width-banner33-1">
             <div className="single-banner mb-30">
               <a href="product-details.html">
                 <img
-                  src={
-                    process.env.PUBLIC_URL + "/assets/img/banner/banner-45.png"
-                  }
+                  src="https://bizweb.dktcdn.net/100/011/344/themes/857119/assets/right_banner_3.jpg?1675236882706"
                   alt=""
                 />
               </a>
-              <div className="banner-content-33-2 banner-content-33-2-position3">
+              {/* <div className="banner-content-33-2 banner-content-33-2-position3">
                 <h4>Covid - 19</h4>
                 <h2>
                   Hand Sanitizer <br />
@@ -69,7 +63,7 @@ const Banner = ({ spaceBottomClass }) => {
                 <Link to={process.env.PUBLIC_URL + "/shop-grid-standard"}>
                   Shop Now
                 </Link>
-              </div>
+              </div> */}
             </div>
           </div>
         </div>

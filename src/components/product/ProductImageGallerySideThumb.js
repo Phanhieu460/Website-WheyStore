@@ -24,42 +24,42 @@ const ProductImageGalleryLeftThumb = ({ product, thumbPosition }) => {
   const gallerySwiperParams = {
     getSwiper: getGallerySwiper,
     spaceBetween: 10,
-    loopedSlides: 4,
+    loopedSlides: 2,
     loop: true,
-    effect: "fade"
+    effect: "fade",
   };
 
   const thumbnailSwiperParams = {
     getSwiper: getThumbnailSwiper,
     spaceBetween: 10,
-    slidesPerView: 4,
-    loopedSlides: 4,
+    slidesPerView: 2,
+    loopedSlides: 2,
     touchRatio: 0.2,
     loop: true,
     slideToClickedSlide: true,
     direction: "vertical",
     breakpoints: {
       1200: {
-        slidesPerView: 4,
-        direction: "vertical"
+        slidesPerView: 2,
+        direction: "vertical",
       },
       992: {
-        slidesPerView: 4,
-        direction: "horizontal"
+        slidesPerView: 2,
+        direction: "horizontal",
       },
       768: {
-        slidesPerView: 4,
-        direction: "horizontal"
+        slidesPerView: 2,
+        direction: "horizontal",
       },
       640: {
-        slidesPerView: 4,
-        direction: "horizontal"
+        slidesPerView: 2,
+        direction: "horizontal",
       },
       320: {
-        slidesPerView: 4,
-        direction: "horizontal"
-      }
-    }
+        slidesPerView: 2,
+        direction: "horizontal",
+      },
+    },
   };
 
   return (
@@ -87,7 +87,7 @@ const ProductImageGalleryLeftThumb = ({ product, thumbPosition }) => {
             )}
             <LightgalleryProvider>
               <Swiper {...gallerySwiperParams}>
-                {product.image &&
+                {product.image.length > 1 &&
                   product.image.map((single, key) => {
                     return (
                       <div key={key}>
@@ -146,7 +146,7 @@ const ProductImageGalleryLeftThumb = ({ product, thumbPosition }) => {
 
 ProductImageGalleryLeftThumb.propTypes = {
   product: PropTypes.object,
-  thumbPosition: PropTypes.string
+  thumbPosition: PropTypes.string,
 };
 
 export default ProductImageGalleryLeftThumb;

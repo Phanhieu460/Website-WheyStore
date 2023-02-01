@@ -3,8 +3,6 @@ import React, { Fragment } from "react";
 import { connect } from "react-redux";
 import { getProducts } from "../../helpers/product";
 import { addToCart } from "../../redux/actions/cartActions";
-import { addToWishlist } from "../../redux/actions/wishlistActions";
-import { addToCompare } from "../../redux/actions/compareActions";
 import ProductGridSingle from "../../components/product/ProductGridSingle";
 
 const ProductGrid = ({
@@ -17,7 +15,6 @@ const ProductGrid = ({
   colorClass,
   titlePriceClass,
 }) => {
-  console.log(products, "zzzz");
   return (
     <Fragment>
       {products?.map((product) => {
@@ -30,7 +27,7 @@ const ProductGrid = ({
             currency={currency}
             addToCart={addToCart}
             cartItem={
-              cartItems.filter((cartItem) => cartItem.id === product._id)[0]
+              cartItems?.filter((cartItem) => cartItem.id === product._id)[0]
             }
             key={product._id}
             titlePriceClass={titlePriceClass}
@@ -63,7 +60,7 @@ const mapStateToProps = (state, ownProps) => {
       ownProps.limit
     ),
     currency: state.currencyData,
-    cartItems: state.cartData,
+    cartItems: state.cartData.cartItems,
   };
 };
 
@@ -86,12 +83,6 @@ const mapDispatchToProps = (dispatch) => {
         )
       );
     },
-    // addToWishlist: (item, addToast) => {
-    //   dispatch(addToWishlist(item, addToast));
-    // },
-    // addToCompare: (item, addToast) => {
-    //   dispatch(addToCompare(item, addToast));
-    // },
   };
 };
 

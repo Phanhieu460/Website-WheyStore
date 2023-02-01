@@ -5,6 +5,8 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { ToastProvider } from "react-toast-notifications";
 import { connect } from "react-redux";
 import { BreadcrumbsProvider } from "react-breadcrumbs-dynamic";
+import "./App.css";
+import "./responsive.css";
 
 // home pages
 
@@ -29,8 +31,13 @@ const BlogDetailsStandard = lazy(() =>
 // // other pages
 // const About = lazy(() => import("./pages/other/About"));
 const Contact = lazy(() => import("./pages/other/Contact"));
-const MyAccount = lazy(() => import("./pages/other/MyAccount"));
-const LoginRegister = lazy(() => import("./pages/other/LoginRegister"));
+const MyAccount = lazy(() => import("./pages/other/ProfileScreen"));
+const Login = lazy(() => import("./pages/other/Login"));
+const Register = lazy(() => import("./pages/other/Register"));
+const Shipping = lazy(() => import("./pages/other/ShippingScreen"));
+const Payment = lazy(() => import("./pages/other/PaymentScreen"));
+const PlaceOrder = lazy(() => import("./pages/other/PlaceOrderScreen"));
+const OrderScreen = lazy(() => import("./pages/other/OrderScreen"));
 
 const Cart = lazy(() => import("./pages/other/Cart"));
 // const Wishlist = lazy(() => import("./pages/other/Wishlist"));
@@ -96,11 +103,15 @@ const App = (props) => {
 
                 {/* Other pages */}
                 <Route
-                  path={process.env.PUBLIC_URL + "/login-register"}
-                  component={LoginRegister}
+                  path={process.env.PUBLIC_URL + "/login"}
+                  component={Login}
                 />
                 <Route
-                  path={process.env.PUBLIC_URL + "/my-account"}
+                  path={process.env.PUBLIC_URL + "/register"}
+                  component={Register}
+                />
+                <Route
+                  path={process.env.PUBLIC_URL + "/profile"}
                   component={MyAccount}
                 />
                 <Route
@@ -114,6 +125,22 @@ const App = (props) => {
                 <Route
                   path={process.env.PUBLIC_URL + "/checkout"}
                   component={Checkout}
+                />
+                <Route
+                  path={process.env.PUBLIC_URL + "/shipping"}
+                  component={Shipping}
+                />
+                <Route
+                  path={process.env.PUBLIC_URL + "/payment"}
+                  component={Payment}
+                />
+                <Route
+                  path={process.env.PUBLIC_URL + "/placeorder"}
+                  component={PlaceOrder}
+                />
+                <Route
+                  path={process.env.PUBLIC_URL + "/order/:id"}
+                  component={OrderScreen}
                 />
                 {/* <Route
                   path={process.env.PUBLIC_URL + "/about"}
