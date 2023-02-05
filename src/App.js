@@ -40,7 +40,6 @@ const PlaceOrder = lazy(() => import("./pages/other/PlaceOrderScreen"));
 const OrderScreen = lazy(() => import("./pages/other/OrderScreen"));
 
 const Cart = lazy(() => import("./pages/other/Cart"));
-// const Wishlist = lazy(() => import("./pages/other/Wishlist"));
 const Checkout = lazy(() => import("./pages/other/Checkout"));
 
 // const NotFound = lazy(() => import("./pages/other/NotFound"));
