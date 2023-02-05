@@ -4,8 +4,6 @@ import { useDispatch, useSelector } from "react-redux";
 import MetaTags from "react-meta-tags";
 import { Link } from "react-router-dom";
 import { BreadcrumbsItem } from "react-breadcrumbs-dynamic";
-import Tab from "react-bootstrap/Tab";
-import Nav from "react-bootstrap/Nav";
 import Layout from "../../layout/Layout";
 import Breadcrumb from "../../wrappers/breadcrumb/Breadcrumb";
 import { login } from "../../redux/actions/userActions";
@@ -20,7 +18,7 @@ const Login = ({ location, history }) => {
   const redirect = location.search ? location.search.split("=")[1] : "/";
 
   const userLogin = useSelector((state) => state.userLogin);
-  const { error, loading, userInfo } = userLogin;
+  const { userInfo } = userLogin;
 
   useEffect(() => {
     if (userInfo) {

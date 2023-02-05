@@ -47,6 +47,15 @@ const PaymentScreen = ({ history }) => {
                   PayPal or Credit Card
                 </label>
               </div>
+              <div>
+                <input
+                  className="form-check-input"
+                  type="radio"
+                  value={paymentMethod}
+                  onChange={(e) => setPaymentMethod(e.target.value)}
+                />
+                <label>Thanh toán khi nhận hàng</label>
+              </div>
             </div>
 
             <button type="submit">Tiếp Tục</button>

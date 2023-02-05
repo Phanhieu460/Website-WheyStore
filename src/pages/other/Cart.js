@@ -10,7 +10,6 @@ import {
   addToCart,
   decreaseQuantity,
   deleteFromCart,
-  cartItemStock,
   deleteAllFromCart,
 } from "../../redux/actions/cartActions";
 import Layout from "../../layout/Layout";

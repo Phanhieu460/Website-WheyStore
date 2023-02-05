@@ -14,13 +14,13 @@ const ProductDescriptionInfo = ({
   addToast,
   addToCart,
 }) => {
-  const [selectedProductColor, setSelectedProductColor] = useState(
+  const [selectedProductColor] = useState(
     product.variation.length > 0 ? product?.variation[0]?.smell : ""
   );
-  const [selectedProductSize, setSelectedProductSize] = useState(
+  const [selectedProductSize] = useState(
     product.variation.length > 0 ? product?.variation[0]?.size[0]?.name : ""
   );
-  const [productStock, setProductStock] = useState(
+  const [productStock] = useState(
     product.variation.length > 0
       ? product?.variation[0]?.size[0]?.stock
       : product.stock
