@@ -22,7 +22,7 @@ const ShopGridRightSidebar = ({ location, products }) => {
   const [currentData, setCurrentData] = useState([]);
   const [sortedProducts, setSortedProducts] = useState([]);
 
-  const pageLimit = 15;
+  const pageLimit = 20;
   const { pathname } = location;
 
   const getLayout = (layout) => {
@@ -50,7 +50,7 @@ const ShopGridRightSidebar = ({ location, products }) => {
     setSortedProducts(sortedProducts);
     setCurrentData(sortedProducts.slice(offset, offset + pageLimit));
   }, [offset, products, sortType, sortValue, filterSortType, filterSortValue]);
-
+  console.log(products.length, currentData.length);
   return (
     <Fragment>
       <MetaTags>
@@ -98,7 +98,7 @@ const ShopGridRightSidebar = ({ location, products }) => {
                 {/* shop product pagination */}
                 <div className="pro-pagination-style text-center mt-30">
                   <Paginator
-                    totalRecords={sortedProducts.length}
+                    totalRecords={products.length}
                     pageLimit={pageLimit}
                     pageNeighbours={2}
                     setOffset={setOffset}

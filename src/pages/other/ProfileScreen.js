@@ -46,7 +46,7 @@ const ProfileScreen = () => {
                       <strong>{userInfo?.name}</strong>
                     </h5>
                     <span className="author-card-position">
-                      <>Joined {moment(userInfo?.createdAt).format("LL")}</>
+                      <>Tham Gia {moment(userInfo?.createdAt).format("LL")}</>
                     </span>
                   </div>
                 </div>
@@ -69,7 +69,7 @@ const ProfileScreen = () => {
                       aria-controls="v-pills-home"
                       aria-selected="true"
                     >
-                      Profile Settings
+                      Cài đặt tài khoản
                     </button>
                     <button
                       class="nav-link d-flex justify-content-between"
@@ -81,7 +81,7 @@ const ProfileScreen = () => {
                       aria-controls="v-pills-profile"
                       aria-selected="false"
                     >
-                      Orders List
+                      Danh sách đặt hàng
                       <span className="badge2">
                         {orders ? orders.length : 0}
                       </span>

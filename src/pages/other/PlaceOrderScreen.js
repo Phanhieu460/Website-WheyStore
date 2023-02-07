@@ -94,10 +94,15 @@ const PlaceOrderScreen = ({ history }) => {
                 </div>
                 <div className="col-md-8 center">
                   <h5>
-                    <strong>Thông Tin Đặt Hàng</strong>
+                    <strong>Phương Thức Thanh Toán</strong>
                   </h5>
                   <p>Shipping: {cart.shippingAddress.country}</p>
-                  <p>Phương Thức Thanh Toán: {cart.paymentMethod}</p>
+                  <p>
+                    Phương Thức Thanh Toán:{" "}
+                    {cart.paymentMethod === "paypal"
+                      ? "Paypal"
+                      : "Thanh Toán Khi Nhận Hàng"}
+                  </p>
                 </div>
               </div>
             </div>
@@ -124,7 +129,9 @@ const PlaceOrderScreen = ({ history }) => {
           <div className="row order-products justify-content-between">
             <div className="col-lg-8">
               {cartItems?.length === 0 ? (
-                <Message variant="alert-info mt-5">Your cart is empty</Message>
+                <Message variant="alert-info mt-5">
+                  Giỏ hàng của bạn trống!
+                </Message>
               ) : (
                 <>
                   {cartItems?.map((item, index) => (
