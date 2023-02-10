@@ -3,13 +3,13 @@
     "id": 1,
     "title": "",
     "subtitle": "",
-    "image": "https://www.wheystore.vn/upload/banner/upl_banner_1674791669_image_1674791669.jpg"
+    "image": "/assets/img/slider/slider-1.jpg"
   },
   {
     "id": 2,
     "title": "",
     "subtitle": "",
-    "image": "https://www.wheystore.vn/upload/banner/upl_banner_1670578031_image_1670578031.jpg",
+    "image": "/assets/img/slider/slider-2.jpg",
     "url": "/"
   }
 ]

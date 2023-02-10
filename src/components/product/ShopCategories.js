@@ -3,6 +3,24 @@ import React from "react";
 import { setActiveSort } from "../../helpers/product";
 
 const ShopCategories = ({ categories, getSortParams }) => {
+  const render = (keyName) => {
+    switch (keyName) {
+      case "wheyprotein":
+        return "Whey Protein";
+      case "preworkout":
+        return "Pre-Workout";
+      case "weightgain":
+        return "Tăng Cân";
+      case "aminoaxit":
+        return "Amino Axit, Creatin";
+      case "vitamin":
+        return "Vitamin Và Khoáng Chất";
+      case "accessory":
+        return "Phụ Kiện";
+      default:
+        break;
+    }
+  };
   return (
     <div className="sidebar-widget">
       <h4 className="pro-sidebar-title">Loại sản phẩm </h4>
@@ -32,7 +50,7 @@ const ShopCategories = ({ categories, getSortParams }) => {
                       }}
                     >
                       {" "}
-                      <span className="checkmark" /> {category}{" "}
+                      <span className="checkmark" /> {render(category)}{" "}
                     </button>
                   </div>
                 </li>

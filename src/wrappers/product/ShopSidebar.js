@@ -16,7 +16,7 @@ const ShopSidebar = ({ products, getSortParams, sideSpaceClass }) => {
   return (
     <div className={`sidebar-style ${sideSpaceClass ? sideSpaceClass : ""}`}>
       {/* shop search */}
-      <ShopSearch />
+      {/* <ShopSearch /> */}
 
       {/* filter by categories */}
       <ShopCategories

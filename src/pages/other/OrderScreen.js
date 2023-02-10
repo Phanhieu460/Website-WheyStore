@@ -21,7 +21,7 @@ const OrderScreen = ({ match }) => {
   const { order, loading, error } = orderDetails;
   const orderPay = useSelector((state) => state.orderPay);
   const { loading: loadingPay, success: successPay } = orderPay;
-console.log(orderDetails)
+  console.log(orderDetails);
   if (!loading) {
     const addDecimals = (num) => {
       return (Math.round(num * 100) / 100).toFixed(2);
@@ -108,17 +108,17 @@ console.log(orderDetails)
                         <strong>Thông tin đặt hàng</strong>
                       </h5>
                       <p>Shipping: {order.shippingAddress.country}</p>
-                      <p>Pay method: {order.paymentMethod}</p>
+                      <p>Phương Thức Thanh Toán: {order.paymentMethod}</p>
                       {order.isPaid ? (
                         <div className="bg-info p-2 col-12">
                           <p className="text-white text-center text-sm-start">
-                            Paid on {moment(order.paidAt).calendar()}
+                            Đã thanh toán {moment(order.paidAt).calendar()}
                           </p>
                         </div>
                       ) : (
                         <div className="bg-danger p-2 col-12">
                           <p className="text-white text-center text-sm-start">
-                            Not Paid
+                            Chưa thanh toán
                           </p>
                         </div>
                       )}
@@ -135,7 +135,7 @@ console.log(orderDetails)
                     </div>
                     <div className="col-md-8 center">
                       <h5>
-                        <strong>Deliver to</strong>
+                        <strong>Vận Chuyển Tới</strong>
                       </h5>
                       <p>
                         Địa Chỉ: {order.shippingAddress.city},{" "}
@@ -145,13 +145,13 @@ console.log(orderDetails)
                       {order.isDelivered ? (
                         <div className="bg-info p-2 col-12">
                           <p className="text-white text-center text-sm-start">
-                            Delivered on {moment(order.deliveredAt).calendar()}
+                            Đã vận chuyển {moment(order.deliveredAt).calendar()}
                           </p>
                         </div>
                       ) : (
                         <div className="bg-danger p-2 col-12">
                           <p className="text-white text-center text-sm-start">
-                            Not Delivered
+                            Chưa vận chuyển
                           </p>
                         </div>
                       )}
@@ -164,7 +164,7 @@ console.log(orderDetails)
                 <div className="col-lg-8">
                   {order.orderItems.length === 0 ? (
                     <Message variant="alert-info mt-5">
-                      Your order is empty
+                      Giỏ hàng của bạn trống!
                     </Message>
                   ) : (
                     <>
@@ -179,11 +179,11 @@ console.log(orderDetails)
                             </Link>
                           </div>
                           <div className="mt-3 mt-md-0 col-md-2 col-6  d-flex align-items-center flex-column justify-content-center ">
-                            <h4>QUANTITY</h4>
+                            <h4>Số Lượng</h4>
                             <h6>{item.quantity}</h6>
                           </div>
                           <div className="mt-3 mt-md-0 col-md-2 col-6 align-items-end  d-flex flex-column justify-content-center ">
-                            <h4>SUBTOTAL</h4>
+                            <h4>Tổng Cộng</h4>
                             <h6>${item.quantity * item.entryPrice}</h6>
                           </div>
                         </div>
@@ -197,31 +197,44 @@ console.log(orderDetails)
                     <tbody>
                       <tr>
                         <td>
-                          <strong>Products</strong>
+                          <strong>Sản Phẩm</strong>
                         </td>
-                        <td>${order.itemsPrice}</td>
+                        <td>
+                          {Intl.NumberFormat("vi-VN").format(order.itemsPrice) +
+                            ".000"}
+                        </td>
                       </tr>
                       <tr>
                         <td>
-                          <strong>Shipping</strong>
+                          <strong>Phí Vận Chuyển</strong>
                         </td>
-                        <td>${order.shippingPrice}</td>
+                        <td>
+                          {Intl.NumberFormat("vi-VN").format(
+                            order.shippingPrice
+                          ) + ".000"}
+                        </td>
                       </tr>
                       <tr>
                         <td>
                           <strong>Tax</strong>
                         </td>
-                        <td>${order.taxPrice}</td>
+                        <td>
+                          {Intl.NumberFormat("vi-VN").format(order.taxPrice) +
+                            ".000"}
+                        </td>
                       </tr>
                       <tr>
                         <td>
-                          <strong>Total</strong>
+                          <strong>Tổng Cộng</strong>
                         </td>
-                        <td>${order.totalPrice}</td>
+                        <td>
+                          {Intl.NumberFormat("vi-VN").format(order.totalPrice) +
+                            ".000"}
+                        </td>
                       </tr>
                     </tbody>
                   </table>
-                  {!order.isPaid && (
+                  {!order.isPaid && order.paymentMethod === "paypal" ? (
                     <div className="col-12">
                       {loadingPay && <Loading />}
                       {!sdkReady ? (
@@ -233,6 +246,8 @@ console.log(orderDetails)
                         />
                       )}
                     </div>
+                  ) : (
+                    <button type="submit">Đặt Hàng Thành Công</button>
                   )}
                 </div>
               </div>

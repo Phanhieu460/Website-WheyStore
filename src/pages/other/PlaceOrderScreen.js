@@ -96,7 +96,7 @@ const PlaceOrderScreen = ({ history }) => {
                   <h5>
                     <strong>Phương Thức Thanh Toán</strong>
                   </h5>
-                  <p>Shipping: {cart.shippingAddress.country}</p>
+
                   <p>
                     Phương Thức Thanh Toán:{" "}
                     {cart.paymentMethod === "paypal"
@@ -150,7 +150,11 @@ const PlaceOrderScreen = ({ history }) => {
                       </div>
                       <div className="mt-3 mt-md-0 col-md-2 col-6 align-items-end  d-flex flex-column justify-content-center ">
                         <h4>Đơn Giá</h4>
-                        <h6>${item.quantity * item.entryPrice}</h6>
+                        <h6>
+                          {Intl.NumberFormat("vi-VN").format(
+                            item.quantity * item.entryPrice
+                          ) + ".000"}
+                        </h6>
                       </div>
                     </div>
                   ))}
@@ -165,31 +169,43 @@ const PlaceOrderScreen = ({ history }) => {
                     <td>
                       <strong>Sản Phẩm</strong>
                     </td>
-                    <td>${cart.itemsPrice}</td>
+                    <td>
+                      {Intl.NumberFormat("vi-VN").format(cart.itemsPrice) +
+                        ".000"}
+                    </td>
                   </tr>
                   <tr>
                     <td>
                       <strong>Shipping</strong>
                     </td>
-                    <td>${cart.shippingPrice}</td>
+                    <td>
+                      {Intl.NumberFormat("vi-VN").format(cart.shippingPrice) +
+                        ".000"}
+                    </td>
                   </tr>
                   <tr>
                     <td>
                       <strong>Tax</strong>
                     </td>
-                    <td>${cart.taxPrice}</td>
+                    <td>
+                      {Intl.NumberFormat("vi-VN").format(cart.taxPrice) +
+                        ".000"}
+                    </td>
                   </tr>
                   <tr>
                     <td>
                       <strong>Tổng</strong>
                     </td>
-                    <td>${cart.totalPrice}</td>
+                    <td>
+                      {Intl.NumberFormat("vi-VN").format(cart.totalPrice) +
+                        ".000"}
+                    </td>
                   </tr>
                 </tbody>
               </table>
               {cartItems.length === 0 ? null : (
                 <button type="submit" onClick={placeOrderHandler}>
-                  PLACE ORDER
+                  Đặt Hàng
                 </button>
               )}
               {error && (

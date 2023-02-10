@@ -56,13 +56,13 @@ const ShippingScreen = ({ history }) => {
               required
               onChange={(e) => setPhone(e.target.value)}
             />
-            <input
+            {/* <input
               type="text"
               placeholder="Enter country"
               value={country}
               required
               onChange={(e) => setCountry(e.target.value)}
-            />
+            /> */}
             <button type="submit">Tiếp Tục</button>
           </form>
         </div>
